@@ -1,0 +1,16 @@
+kind,name,share_or_usage,completion_rate,avg_seconds,conversion_lift
+content,Product Videos,0.2157,0.5828,74.5,
+content,Customer Reviews,0.2031,0.6632,61.4,
+content,Buying Guides,0.1661,0.4924,169.1,
+content,Comparison Tables,0.1244,0.7134,112.7,
+content,Editorial Stories,0.1426,0.412,142.9,
+content,Lookbooks & Galleries,0.0888,0.5326,58.4,
+content,FAQ & Help,0.0592,0.623,49.3,
+feature,Faceted Filters,0.4933,,,1.32
+feature,Reviews Sort,0.2228,,,1.62
+feature,Wishlist,0.2151,,,1.45
+feature,Product Compare,0.1674,,,2.1
+feature,Size / Fit Guide,0.1268,,,1.38
+feature,Price Alerts,0.0852,,,1.21
+feature,Live Chat,0.0551,,,1.74
+feature,AR Preview,0.0422,,,1.9

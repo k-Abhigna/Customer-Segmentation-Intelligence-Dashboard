@@ -1,0 +1,14 @@
+page_id,page_name,url_pattern,page_views,entries,exits,exit_rate,avg_time_on_page_seconds,avg_scroll_depth,clicks_per_view
+home,Home,/,6170666,1773413,1685246,0.2731,35.9,0.5024,2.6087
+category,Category Listing,/c/*,6310084,1266272,1223003,0.1938,49.1,0.6772,3.3696
+product,Product Detail,/p/*,8143381,2340328,2008780,0.2467,81.2,0.7427,3.1522
+compare,Product Comparison,/compare,1740761,104015,276046,0.1586,117.1,0.8519,4.1304
+search,Search Results,/search,3210861,56598,537458,0.1674,32.1,0.557,2.3913
+reviews,Reviews,/p/*/reviews,1669399,156022,308851,0.185,92.5,0.7864,1.7391
+blog,Blog & Stories,/blog/*,2320752,788153,960940,0.4141,134.1,0.699,1.1957
+guides,Buying Guides,/guides/*,1699004,1088402,493944,0.2907,158.6,0.7755,2.0652
+deals,Deals & Offers,/deals,1918059,492439,439344,0.2291,57.6,0.7209,3.587
+campaign,Autumn Campaign LP,/lp/autumn,1352002,1358805,500260,0.37,41.5,0.5352,1.9565
+cart,Cart,/cart,1359424,0,383536,0.2821,68,0.6335,2.8261
+checkout,Checkout,/checkout,875520,0,298472,0.3409,154.9,0.8847,4.5652
+help,Help & Shipping,/help/*,1090780,56598,365166,0.3348,69.9,0.6007,1.413

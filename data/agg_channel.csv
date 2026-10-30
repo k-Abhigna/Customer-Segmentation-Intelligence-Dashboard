@@ -1,0 +1,7 @@
+channel_id,channel_name,sessions,share,avg_session_seconds,bounce_rate,conversions,conversion_rate
+organic,Organic Search,3014120,0.3179,243.3,0.3609,77929,0.0259
+direct,Direct,1723518,0.1818,267.4,0.3068,80399,0.0466
+paid,Paid Search,1406820,0.1484,153.6,0.5014,38365,0.0273
+social,Social,1573980,0.166,110.9,0.6499,14632,0.0093
+email,Email,1027430,0.1084,240.2,0.3176,45416,0.0442
+referral,Referral,735177,0.0775,204.2,0.4155,16602,0.0226

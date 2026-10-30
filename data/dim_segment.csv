@@ -1,0 +1,8 @@
+segment_id,segment_name,rule,description,color_hex,retention_rate_30d
+engaged,Highly Engaged,≥5 sessions in 30d AND avg session ≥ 6 min AND scroll depth ≥ 60%,"Frequent, deep sessions with strong content and product interaction.",#3b82f6,0.86
+first,First-Time Visitors,"No prior session cookie-less signal in 90d (first-party, consented)","New, anonymous arrivals discovering the brand for the first time.",#22d3ee,0.21
+returning,Returning Visitors,2–4 sessions in 30d AND not matching a higher-priority segment,Visitors coming back with moderate engagement and steady conversion.,#8b5cf6,0.62
+window,Window Shoppers,≥6 product views in 30d AND add-to-cart rate < 5%,Browse many products and comparisons but rarely add to cart.,#f472b6,0.48
+intent,High Purchase Intent,Compare/review page view AND add-to-cart within 7d,"Comparison, review and cart activity signal readiness to buy.",#10b981,0.74
+atrisk,At-Risk Customers,Session frequency down ≥50% vs prior 30d AND previously converted,Previously active visitors with declining frequency and depth.,#f59e0b,0.31
+inactive,Inactive Visitors,Avg session < 45s AND ≤1 page AND no interaction events,"Very short, low-interaction visits with minimal content engagement.",#64748b,0.09

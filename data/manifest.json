@@ -1,0 +1,98 @@
+{
+  "generated_from": "synthetic generator (seed 20261029)",
+  "synthetic": true,
+  "contains_pii": false,
+  "days": 180,
+  "datasets": [
+    {
+      "file": "fact_daily_behavior.csv",
+      "name": "Daily behavior facts",
+      "grain": "date × device × region × segment",
+      "description": "Additive event counts and sums. Primary fact table for BI models — join to dimensions on *_id."
+    },
+    {
+      "file": "dim_segment.csv",
+      "name": "Segment dimension",
+      "grain": "segment",
+      "description": "Behavioral segment definitions and rule logic."
+    },
+    {
+      "file": "dim_device.csv",
+      "name": "Device dimension",
+      "grain": "device",
+      "description": "Device classes."
+    },
+    {
+      "file": "dim_region.csv",
+      "name": "Region dimension",
+      "grain": "region",
+      "description": "Aggregated geographic regions (no city / IP level data)."
+    },
+    {
+      "file": "dim_page.csv",
+      "name": "Page dimension",
+      "grain": "page",
+      "description": "Site page templates (URL patterns, no query strings)."
+    },
+    {
+      "file": "agg_segment_summary.csv",
+      "name": "Segment summary",
+      "grain": "segment (filtered period)",
+      "description": "Segment KPIs for the selected filters."
+    },
+    {
+      "file": "agg_daily_kpis.csv",
+      "name": "Daily KPI series",
+      "grain": "date",
+      "description": "Daily KPI time series for the selected filters."
+    },
+    {
+      "file": "agg_channel.csv",
+      "name": "Traffic sources",
+      "grain": "channel",
+      "description": "Modeled channel attribution of sessions (aggregate shares)."
+    },
+    {
+      "file": "agg_page_metrics.csv",
+      "name": "Page metrics",
+      "grain": "page",
+      "description": "Page-level engagement for the selected filters."
+    },
+    {
+      "file": "agg_navigation_transitions.csv",
+      "name": "Navigation transitions",
+      "grain": "from_page × to_page",
+      "description": "Next-page probabilities (Markov transitions) — ideal for Sankey visuals in BI tools."
+    },
+    {
+      "file": "agg_journey_funnel.csv",
+      "name": "Journey funnel",
+      "grain": "stage",
+      "description": "7-stage customer journey with conversion, drop-off and time between stages."
+    },
+    {
+      "file": "agg_hourly_activity.csv",
+      "name": "Hourly activity",
+      "grain": "weekday × hour",
+      "description": "Average sessions per weekday-hour."
+    },
+    {
+      "file": "agg_category_preferences.csv",
+      "name": "Category preferences",
+      "grain": "category × subcategory",
+      "description": "Product-view share by category."
+    },
+    {
+      "file": "agg_search_keywords.csv",
+      "name": "Search keywords",
+      "grain": "keyword",
+      "description": "Aggregated on-site search terms (no free-text logs)."
+    },
+    {
+      "file": "agg_content_features.csv",
+      "name": "Content & feature engagement",
+      "grain": "content type / feature",
+      "description": "Content consumption and feature usage."
+    }
+  ]
+}

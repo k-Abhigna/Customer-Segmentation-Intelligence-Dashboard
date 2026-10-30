@@ -1,0 +1,29 @@
+category,subcategory,product_views,category_share,category_conversion_rate
+Electronics,Headphones,757625,0.263,0.0787
+Electronics,Smart Home,641067,0.263,0.0787
+Electronics,Laptops,582789,0.263,0.0787
+Electronics,Wearables,524510,0.263,0.0787
+Electronics,Cameras,407952,0.263,0.0787
+Fashion,Outerwear,661657,0.1866,0.1056
+Fashion,Footwear,620304,0.1866,0.1056
+Fashion,Accessories,454889,0.1866,0.1056
+Fashion,Basics,330829,0.1866,0.1056
+Home & Living,Furniture,608146,0.183,0.0912
+Home & Living,Kitchen,567603,0.183,0.0912
+Home & Living,Lighting,364888,0.183,0.0912
+Home & Living,Decor,486517,0.183,0.0912
+Sports & Outdoors,Fitness,479820,0.114,0.096
+Sports & Outdoors,Camping,328298,0.114,0.096
+Sports & Outdoors,Cycling,252537,0.114,0.096
+Sports & Outdoors,Running,202029,0.114,0.096
+Beauty & Care,Skincare,474888,0.0974,0.1296
+Beauty & Care,Fragrance,323787,0.0974,0.1296
+Beauty & Care,Haircare,280615,0.0974,0.1296
+Books & Media,Non-fiction,335124,0.0756,0.1344
+Books & Media,Fiction,301612,0.0756,0.1344
+Books & Media,Audio,201075,0.0756,0.1344
+Toys & Games,Board Games,233168,0.0526,0.1104
+Toys & Games,STEM Kits,198193,0.0526,0.1104
+Toys & Games,Puzzles,151559,0.0526,0.1104
+Gourmet & Grocery,Coffee & Tea,172937,0.0279,0.1536
+Gourmet & Grocery,Pantry,135879,0.0279,0.1536

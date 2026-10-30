@@ -1,0 +1,8 @@
+stage_order,stage,sessions,conversion_from_previous,drop_off_rate,conversion_from_start,avg_seconds_from_previous
+1,Discovery,9481045,1,0,1,0
+2,Landing Page,5504619,0.5806,0.4194,0.5806,10.9
+3,Content Exploration,4184387,0.7602,0.2398,0.4413,55.9
+4,Product Interest,2846800,0.6803,0.3197,0.3003,119.1
+5,Add to Cart,732999,0.2575,0.7425,0.0773,255.9
+6,Checkout,400848,0.5469,0.4531,0.0423,319.2
+7,Conversion,273343,0.6819,0.3181,0.0288,203.6

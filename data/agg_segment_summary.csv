@@ -1,0 +1,8 @@
+segment_id,segment_name,est_unique_visitors,sessions,engagement_score,avg_session_seconds,pages_per_session,bounce_rate,conversion_rate,retention_rate_30d,revenue
+engaged,Highly Engaged,65000,876190,91.4,522.8,8.1901,0.113,0.0867,0.86,10850521
+first,First-Time Visitors,2526148,2678859,29.1,90.3,2.0828,0.6031,0.006,0.21,1191718
+returning,Returning Visitors,128472,1780110,58.7,246.5,4.5149,0.2814,0.0321,0.62,5524063
+window,Window Shoppers,407457,1409052,69,294.5,6.0871,0.2215,0.0098,0.48,1226339
+intent,High Purchase Intent,128054,723583,81.5,391.9,6.9823,0.1343,0.1442,0.74,13442147
+atrisk,At-Risk Customers,163078,927814,36,115.2,2.3827,0.4739,0.0062,0.31,470543
+inactive,Inactive Visitors,796416,1085437,12.7,34.7,1.1313,0.8402,0.0002,0.09,16618

@@ -1,0 +1,14 @@
+page_id,page_name,url_pattern
+home,Home,/
+category,Category Listing,/c/*
+product,Product Detail,/p/*
+compare,Product Comparison,/compare
+search,Search Results,/search
+reviews,Reviews,/p/*/reviews
+blog,Blog & Stories,/blog/*
+guides,Buying Guides,/guides/*
+deals,Deals & Offers,/deals
+campaign,Autumn Campaign LP,/lp/autumn
+cart,Cart,/cart
+checkout,Checkout,/checkout
+help,Help & Shipping,/help/*
