@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "a25875c1e8454f7a4a37",
+  "position": {
+    "x": 16,
+    "y": 276,
+    "z": 11000,
+    "height": 400,
+    "width": 620,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "funnel",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JourneyStages"
+                    }
+                  },
+                  "Property": "Stage"
+                }
+              },
+              "queryRef": "JourneyStages.Stage",
+              "nativeQueryRef": "Stage"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stage Sessions"
+                }
+              },
+              "queryRef": "_Measures.Stage Sessions",
+              "nativeQueryRef": "Stage Sessions"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Interactive journey funnel'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

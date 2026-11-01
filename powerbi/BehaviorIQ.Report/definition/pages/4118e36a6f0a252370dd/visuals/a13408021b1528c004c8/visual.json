@@ -1,0 +1,242 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "a13408021b1528c004c8",
+  "position": {
+    "x": 16,
+    "y": 16,
+    "z": 1000,
+    "height": 680,
+    "width": 1248,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "ABOUT THIS REPORT",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "color": "#22D3EE",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "BehaviorIQ — Human Behavior Intelligence",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "22pt",
+                      "color": "#FFFFFF",
+                      "fontFamily": "Segoe UI Semibold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Data: ",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "synthetic, deterministic sample — 180 days × 3 devices × 5 regions × 7 segments = 18,900 aggregated rows of event counts. No personally identifiable information, no individual records, no city/IP data, no sensitive inference.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Model: ",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "star schema — FactBehavior joined to DimDate (marked date table), DimDevice, DimRegion, DimSegment; DimPage drives navigation tables. All logic lives in DAX measures (_Measures, organized in display folders).",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Modeled breakdowns: ",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "traffic sources, page views and categories are attributed from the segment mix (ChannelMix, PageMix, CategoryMix) so they respond to filters. Tables marked \"full period\" are static references.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Unique visitors: ",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "daily visitor counts are not additive across days; the measure estimates uniques by de-duplicating returning visitor-days with each segment's revisit probability.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Predictions: ",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "SIMULATED what-if formulas (logistic transforms + fixed coefficients). Not trained or validated — replace with a real model before using for decisions.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#F59E0B",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Insights: ",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "9 predefined analytical rules (InsightRules table + Insight Evidence measure). No AI model is called.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Security: ",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "sample row-level security role \"Europe Manager\" (Modeling → View as) restricts DimRegion to Europe.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Default filter: ",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "report-level filter Date ≥ 2026-09-30 (last 30 days) so period-over-period comparisons work. Clear it in the Filters pane to see all 180 days.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#DDE2EF"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

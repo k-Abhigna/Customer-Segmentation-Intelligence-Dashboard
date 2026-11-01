@@ -1,0 +1,51 @@
+/// Aggregated on-site search terms (no free-text logs).
+table SearchKeywords
+	lineageTag: 19384496-5b6c-ed86-cb1e-1c5b5246ebda
+
+	column keyword
+		dataType: string
+		lineageTag: a27ed75c-b85a-0afe-307f-673cbeb37081
+		summarizeBy: none
+		sourceColumn: keyword
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: b767c6ee-5b0d-0969-81a2-c0a0652eb08c
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column searches
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8f86b4da-2926-4754-c99d-bd520c6708af
+		summarizeBy: sum
+		sourceColumn: searches
+
+		annotation SummarizationSetBy = Automatic
+
+	column trend_vs_prior
+		dataType: double
+		formatString: +0%;-0%;0%
+		lineageTag: 73ab119b-5d2c-adea-e60e-583ceec5e104
+		summarizeBy: none
+		sourceColumn: trend_vs_prior
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SearchKeywords = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_search_keywords.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"keyword", type text}, {"category", type text}, {"searches", Int64.Type}, {"trend_vs_prior", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

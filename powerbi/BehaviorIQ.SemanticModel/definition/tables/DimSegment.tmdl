@@ -1,0 +1,91 @@
+/// Rule-based behavioral segments (cohorts only). daily_return_prob is a model parameter used to estimate unique visitors.
+table DimSegment
+	lineageTag: 570aef85-1169-6b67-42bb-ff9084cdc08b
+
+	column segment_id
+		dataType: string
+		isHidden
+		lineageTag: d55d3220-6630-30b7-0d07-a2bf9545996f
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_name
+		dataType: string
+		lineageTag: 0377d19b-a376-27b2-bb76-2e39b681878e
+		summarizeBy: none
+		sourceColumn: segment_name
+		sortByColumn: segment_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column rule
+		dataType: string
+		lineageTag: fd1a0c54-0c84-0e43-700f-5257c02e2f78
+		summarizeBy: none
+		sourceColumn: rule
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 856c0439-3f15-a232-719c-9b3d5dd2bded
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column color_hex
+		dataType: string
+		isHidden
+		lineageTag: f7c8b28d-8784-9875-b433-d041b64cfb5b
+		summarizeBy: none
+		sourceColumn: color_hex
+
+		annotation SummarizationSetBy = Automatic
+
+	column retention_rate_30d
+		dataType: double
+		formatString: 0%
+		lineageTag: 18b631ad-3a83-2f82-98b7-0f1a165eb698
+		summarizeBy: none
+		sourceColumn: retention_rate_30d
+
+		annotation SummarizationSetBy = Automatic
+
+	column daily_return_prob
+		dataType: double
+		formatString: 0.000
+		isHidden
+		lineageTag: 75e0cbdd-2ec4-f9e4-a3cd-efcc6fe3882e
+		summarizeBy: none
+		sourceColumn: daily_return_prob
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_order
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 518af6d7-c514-ebd8-6ce9-b4a2d32be70e
+		summarizeBy: none
+		sourceColumn: segment_order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSegment = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_segment.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"segment_id", type text}, {"segment_name", type text}, {"rule", type text}, {"description", type text}, {"color_hex", type text}, {"retention_rate_30d", type number}}, "en-US"),
+				    ReturnProb = Table.AddColumn(Typed, "daily_return_prob", each Record.FieldOrDefault([engaged = 0.11, first = 0, returning = 0.06, window = 0.05, intent = 0.09, atrisk = 0.025, inactive = 0.015], [segment_id], 0), type number),
+				    Ordered = Table.AddColumn(ReturnProb, "segment_order", each Record.FieldOrDefault([engaged = 1, intent = 2, returning = 3, window = 4, first = 5, atrisk = 6, inactive = 7], [segment_id], 99), Int64.Type)
+				in
+				    Ordered
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

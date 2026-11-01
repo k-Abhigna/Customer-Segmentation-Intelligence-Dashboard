@@ -1,0 +1,105 @@
+/// Page-level engagement reference (full 180-day period).
+table PageMetrics
+	lineageTag: 182f8443-90b8-65a9-5be7-26e007f8c6a4
+
+	column page_id
+		dataType: string
+		isHidden
+		lineageTag: f999ddfc-7b4f-df80-12a9-ce4e7e8a72c7
+		summarizeBy: none
+		sourceColumn: page_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_name
+		dataType: string
+		lineageTag: d26a934f-7c64-1ad2-3949-7ec74e1280ea
+		summarizeBy: none
+		sourceColumn: page_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column url_pattern
+		dataType: string
+		lineageTag: 475e1648-af0f-3cd6-9059-8686494c46a7
+		summarizeBy: none
+		sourceColumn: url_pattern
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_views
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4e894beb-0725-c28e-5938-b74f81387f02
+		summarizeBy: sum
+		sourceColumn: page_views
+
+		annotation SummarizationSetBy = Automatic
+
+	column entries
+		dataType: int64
+		formatString: #,0
+		lineageTag: fed56819-5acb-d5d0-aa16-f2a3f2fec67c
+		summarizeBy: sum
+		sourceColumn: entries
+
+		annotation SummarizationSetBy = Automatic
+
+	column exits
+		dataType: int64
+		formatString: #,0
+		lineageTag: 10b695c2-455a-8efa-2eb0-c87dbee88ccf
+		summarizeBy: sum
+		sourceColumn: exits
+
+		annotation SummarizationSetBy = Automatic
+
+	column exit_rate
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 03514d6f-d9c2-e7e8-1b4f-ed848ec484c8
+		summarizeBy: none
+		sourceColumn: exit_rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_time_on_page_seconds
+		dataType: double
+		formatString: 0
+		lineageTag: f62ebae9-6b47-1bd9-f229-493df52d9b3c
+		summarizeBy: none
+		sourceColumn: avg_time_on_page_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_scroll_depth
+		dataType: double
+		formatString: 0%
+		lineageTag: 20b59b8a-dd73-167d-9567-e44a9822fcaf
+		summarizeBy: none
+		sourceColumn: avg_scroll_depth
+
+		annotation SummarizationSetBy = Automatic
+
+	column clicks_per_view
+		dataType: double
+		formatString: 0.00
+		lineageTag: e625b01d-aa63-0cd6-e0d9-6ff5eaa88cdb
+		summarizeBy: none
+		sourceColumn: clicks_per_view
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PageMetrics = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_page_metrics.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"page_id", type text}, {"page_name", type text}, {"url_pattern", type text}, {"page_views", Int64.Type}, {"entries", Int64.Type}, {"exits", Int64.Type}, {"exit_rate", type number}, {"avg_time_on_page_seconds", type number}, {"avg_scroll_depth", type number}, {"clicks_per_view", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

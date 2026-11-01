@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "9c377c44ce7e5d18ba7a",
+  "position": {
+    "x": 848,
+    "y": 168,
+    "z": 8000,
+    "height": 380,
+    "width": 416,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SearchKeywords"
+                    }
+                  },
+                  "Property": "keyword"
+                }
+              },
+              "queryRef": "SearchKeywords.keyword",
+              "nativeQueryRef": "keyword"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SearchKeywords"
+                    }
+                  },
+                  "Property": "searches"
+                }
+              },
+              "queryRef": "SearchKeywords.searches",
+              "nativeQueryRef": "searches"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Frequently searched keywords (full period)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

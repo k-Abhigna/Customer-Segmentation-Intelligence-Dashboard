@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "0d93208a5f46bab4063d",
+  "position": {
+    "x": 16,
+    "y": 560,
+    "z": 9000,
+    "height": 300,
+    "width": 620,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ContentFeatures"
+                    }
+                  },
+                  "Property": "kind"
+                }
+              },
+              "queryRef": "ContentFeatures.kind",
+              "nativeQueryRef": "kind"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ContentFeatures"
+                    }
+                  },
+                  "Property": "name"
+                }
+              },
+              "queryRef": "ContentFeatures.name",
+              "nativeQueryRef": "name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ContentFeatures"
+                    }
+                  },
+                  "Property": "share_or_usage"
+                }
+              },
+              "queryRef": "ContentFeatures.share_or_usage",
+              "nativeQueryRef": "share_or_usage"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ContentFeatures"
+                    }
+                  },
+                  "Property": "completion_rate"
+                }
+              },
+              "queryRef": "ContentFeatures.completion_rate",
+              "nativeQueryRef": "completion_rate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ContentFeatures"
+                    }
+                  },
+                  "Property": "conversion_lift"
+                }
+              },
+              "queryRef": "ContentFeatures.conversion_lift",
+              "nativeQueryRef": "conversion_lift"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Preferred content types and popular features (full period)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

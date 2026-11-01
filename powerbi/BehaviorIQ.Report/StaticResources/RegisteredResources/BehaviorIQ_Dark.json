@@ -1,0 +1,384 @@
+{
+  "name": "BehaviorIQ Dark",
+  "dataColors": [
+    "#3B82F6",
+    "#22D3EE",
+    "#8B5CF6",
+    "#F472B6",
+    "#10B981",
+    "#F59E0B",
+    "#60A5FA",
+    "#A78BFA",
+    "#2DD4BF",
+    "#FB7185",
+    "#94A3B8",
+    "#34D399"
+  ],
+  "background": "#111829",
+  "foreground": "#E2E8F0",
+  "tableAccent": "#22D3EE",
+  "good": "#34D399",
+  "neutral": "#8792B0",
+  "bad": "#FB7185",
+  "maximum": "#22D3EE",
+  "center": "#3B82F6",
+  "minimum": "#0D1528",
+  "textClasses": {
+    "callout": {
+      "fontSize": 24,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#FFFFFF"
+    },
+    "title": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#FFFFFF"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#DDE2EF"
+    },
+    "label": {
+      "fontSize": 9,
+      "fontFace": "Segoe UI",
+      "color": "#B4BDD4"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#111829"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#252F47"
+              }
+            },
+            "radius": 12
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "fontSize": 11,
+            "fontFamily": "Segoe UI Semibold"
+          }
+        ],
+        "visualHeader": [
+          {
+            "background": {
+              "solid": {
+                "color": "#111829"
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": "#B4BDD4"
+              }
+            },
+            "border": {
+              "solid": {
+                "color": "#252F47"
+              }
+            }
+          }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#8792B0"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "#8792B0"
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": "#1C2540"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#8792B0"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "#8792B0"
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": "#1C2540"
+              }
+            },
+            "gridlineStyle": "dotted"
+          }
+        ],
+        "legend": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#B4BDD4"
+              }
+            },
+            "position": "Top"
+          }
+        ],
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#DDE2EF"
+              }
+            }
+          }
+        ],
+        "outspacePane": [
+          {
+            "backgroundColor": {
+              "solid": {
+                "color": "#0D1220"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#E2E8F0"
+              }
+            },
+            "borderColor": {
+              "solid": {
+                "color": "#252F47"
+              }
+            }
+          }
+        ],
+        "filterCard": [
+          {
+            "$id": "Applied",
+            "backgroundColor": {
+              "solid": {
+                "color": "#13284A"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#E2E8F0"
+              }
+            }
+          },
+          {
+            "$id": "Available",
+            "backgroundColor": {
+              "solid": {
+                "color": "#111829"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#E2E8F0"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0A0E1A"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#05070F"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "items": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#E2E8F0"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#13284A"
+              }
+            }
+          }
+        ],
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#22D3EE"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "columnHeaders": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#8792B0"
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": "#1A2236"
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "fontColorPrimary": {
+              "solid": {
+                "color": "#E2E8F0"
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": "#111829"
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": "#E2E8F0"
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": "#151D30"
+              }
+            }
+          }
+        ],
+        "grid": [
+          {
+            "gridHorizontalColor": {
+              "solid": {
+                "color": "#1C2540"
+              }
+            },
+            "gridVerticalColor": {
+              "solid": {
+                "color": "#1C2540"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "pivotTable": {
+      "*": {
+        "columnHeaders": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#8792B0"
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": "#1A2236"
+              }
+            }
+          }
+        ],
+        "rowHeaders": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#DDE2EF"
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": "#111829"
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "fontColorPrimary": {
+              "solid": {
+                "color": "#E2E8F0"
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": "#111829"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "textbox": {
+      "*": {
+        "background": [
+          {
+            "show": false
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ]
+      }
+    }
+  }
+}

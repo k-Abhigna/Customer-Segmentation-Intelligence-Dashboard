@@ -1,0 +1,123 @@
+/// Modeled traffic-source mix per segment (normalized coefficients). Used to attribute sessions, duration and conversions to channels.
+table ChannelMix
+	lineageTag: 87b14399-4e0b-0b2d-6b5b-ed6f8eb6d92f
+
+	column segment_id
+		dataType: string
+		isHidden
+		lineageTag: d2cfc0d0-0b41-bd52-8a03-37f1dc15ce2c
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 7ae444a4-e442-d87d-7cd8-c94d12a7486e
+		summarizeBy: none
+		sourceColumn: channel
+		sortByColumn: channel_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel_order
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: e508e686-12d1-2550-1d06-6b58476961d3
+		summarizeBy: none
+		sourceColumn: channel_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column share
+		dataType: double
+		formatString: 0.0%
+		isHidden
+		lineageTag: 9339411c-4c5e-6d26-0c0a-366f8f78333b
+		summarizeBy: none
+		sourceColumn: share
+
+		annotation SummarizationSetBy = Automatic
+
+	column dur_coef
+		dataType: double
+		isHidden
+		lineageTag: 7dc49d1d-d069-3efe-d660-76fd401c1a77
+		summarizeBy: none
+		sourceColumn: dur_coef
+
+		annotation SummarizationSetBy = Automatic
+
+	column bounce_coef
+		dataType: double
+		isHidden
+		lineageTag: 98e51ec4-82c9-d7df-c14b-c4fbb08d55f1
+		summarizeBy: none
+		sourceColumn: bounce_coef
+
+		annotation SummarizationSetBy = Automatic
+
+	column conv_coef
+		dataType: double
+		isHidden
+		lineageTag: 670cd8e6-0c86-c2ab-1e9b-8f33d9388cbb
+		summarizeBy: none
+		sourceColumn: conv_coef
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ChannelMix = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [segment_id = text, channel = text, channel_order = Int64.Type, share = number, dur_coef = number, bounce_coef = number, conv_coef = number], {
+				        {"engaged", "Organic Search", 1, 0.3, 0.346111, 0.273189, 0.284656},
+				        {"engaged", "Direct", 2, 0.32, 0.321548, 0.304956, 0.352792},
+				        {"engaged", "Paid Search", 3, 0.08, 0.064012, 0.094875, 0.082415},
+				        {"engaged", "Social", 4, 0.08, 0.053591, 0.110123, 0.044822},
+				        {"engaged", "Email", 5, 0.14, 0.132862, 0.136383, 0.164468},
+				        {"engaged", "Referral", 6, 0.08, 0.081876, 0.080474, 0.070848},
+				        {"first", "Organic Search", 1, 0.38, 0.456059, 0.324464, 0.397331},
+				        {"first", "Direct", 2, 0.1, 0.10453, 0.089357, 0.12149},
+				        {"first", "Paid Search", 3, 0.2, 0.166473, 0.222399, 0.227046},
+				        {"first", "Social", 4, 0.18, 0.125436, 0.232327, 0.111133},
+				        {"first", "Email", 5, 0.02, 0.019744, 0.018268, 0.025891},
+				        {"first", "Referral", 6, 0.12, 0.127758, 0.113185, 0.117108},
+				        {"returning", "Organic Search", 1, 0.3, 0.349361, 0.270554, 0.285068},
+				        {"returning", "Direct", 2, 0.26, 0.263711, 0.245386, 0.287059},
+				        {"returning", "Paid Search", 3, 0.12, 0.09692, 0.14094, 0.123801},
+				        {"returning", "Social", 4, 0.08, 0.054095, 0.10906, 0.044887},
+				        {"returning", "Email", 5, 0.16, 0.153268, 0.154362, 0.188235},
+				        {"returning", "Referral", 6, 0.08, 0.082645, 0.079698, 0.07095},
+				        {"window", "Organic Search", 1, 0.36, 0.427422, 0.314187, 0.361653},
+				        {"window", "Direct", 2, 0.18, 0.186136, 0.1644, 0.210103},
+				        {"window", "Paid Search", 3, 0.14, 0.115282, 0.159123, 0.152698},
+				        {"window", "Social", 4, 0.16, 0.110303, 0.211082, 0.09491},
+				        {"window", "Email", 5, 0.1, 0.097664, 0.093363, 0.124378},
+				        {"window", "Referral", 6, 0.06, 0.063194, 0.057845, 0.056257},
+				        {"intent", "Organic Search", 1, 0.28, 0.328042, 0.252015, 0.262032},
+				        {"intent", "Direct", 2, 0.3, 0.306122, 0.282575, 0.326203},
+				        {"intent", "Paid Search", 3, 0.17, 0.138133, 0.199267, 0.172727},
+				        {"intent", "Social", 4, 0.06, 0.040816, 0.081633, 0.033155},
+				        {"intent", "Email", 5, 0.14, 0.134921, 0.134799, 0.16221},
+				        {"intent", "Referral", 6, 0.05, 0.051965, 0.049712, 0.043672},
+				        {"atrisk", "Organic Search", 1, 0.26, 0.308694, 0.231231, 0.248408},
+				        {"atrisk", "Direct", 2, 0.24, 0.248181, 0.223371, 0.266424},
+				        {"atrisk", "Paid Search", 3, 0.1, 0.082344, 0.115822, 0.103731},
+				        {"atrisk", "Social", 4, 0.12, 0.082727, 0.161324, 0.067698},
+				        {"atrisk", "Email", 5, 0.22, 0.21486, 0.209307, 0.260237},
+				        {"atrisk", "Referral", 6, 0.06, 0.063194, 0.058945, 0.053503},
+				        {"inactive", "Organic Search", 1, 0.3, 0.373644, 0.250048, 0.317476},
+				        {"inactive", "Direct", 2, 0.14, 0.151868, 0.122117, 0.172143},
+				        {"inactive", "Paid Search", 3, 0.16, 0.138208, 0.173677, 0.183834},
+				        {"inactive", "Social", 4, 0.26, 0.188027, 0.327583, 0.162467},
+				        {"inactive", "Email", 5, 0.08, 0.081961, 0.071332, 0.104818},
+				        {"inactive", "Referral", 6, 0.06, 0.066292, 0.055243, 0.059262}
+				    })
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "BehaviorIQ"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2915f554-1859-0e90-a5a5-7866a6059040"
+  }
+}

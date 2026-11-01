@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "5005ea89784d3ee8bc08",
+  "position": {
+    "x": 648,
+    "y": 882,
+    "z": 12000,
+    "height": 290,
+    "width": 616,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SearchKeywords"
+                    }
+                  },
+                  "Property": "keyword"
+                }
+              },
+              "queryRef": "SearchKeywords.keyword",
+              "nativeQueryRef": "keyword"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "SearchKeywords"
+                    }
+                  },
+                  "Property": "searches"
+                }
+              },
+              "queryRef": "SearchKeywords.searches",
+              "nativeQueryRef": "searches"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Search behavior — top keywords (full period)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

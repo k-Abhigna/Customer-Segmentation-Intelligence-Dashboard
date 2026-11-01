@@ -1,0 +1,807 @@
+/// Home table for all DAX measures (organized in display folders).
+table _Measures
+	lineageTag: 25ba9885-f0cc-ca63-ba5b-f39bf63c752a
+
+	measure Sessions = SUM(FactBehavior[sessions])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: fe347a55-aaf3-b345-f8ea-2d79040a83b8
+
+	measure 'Visitor Days' = SUM(FactBehavior[visitors])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 0fef6014-2e11-9c0a-7146-ec6f9b44c494
+
+	measure 'New Visitors' = SUM(FactBehavior[new_visitors])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 73e201cc-f477-a3c9-4835-81b4f0018110
+
+	measure 'Returning Visitors' = SUM(FactBehavior[returning_visitors])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: e0b27c35-ba53-319c-d8ab-1bd2a7cb6d0a
+
+	measure 'Page Views' = SUM(FactBehavior[page_views])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: d3e386cd-9168-87d4-cfff-cf9c3082c951
+
+	measure Bounces = SUM(FactBehavior[bounces])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: d0e10f47-49e8-7ddd-982a-6acf94ee3bab
+
+	measure 'Engaged Sessions' = SUM(FactBehavior[engaged_sessions])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 876f553c-fc41-f7b8-6f4a-4efab6aaca8a
+
+	measure 'Product Views' = SUM(FactBehavior[product_views])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: bd9c3bb9-a581-520f-b779-be1c2fc97cf6
+
+	measure Searches = SUM(FactBehavior[searches])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: e325a147-c15b-cc3f-e3c6-064a8960fc1e
+
+	measure Clicks = SUM(FactBehavior[clicks])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 1a3d10e8-929f-40f4-070d-1819e523a8b4
+
+	measure 'Scroll Events' = SUM(FactBehavior[scroll_events])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: c03522a5-bf70-0c5f-bb90-2fe833e10f11
+
+	measure 'Landed Sessions' = SUM(FactBehavior[stage_landing])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 16edbac2-67fc-6f4b-c074-0b890a472e0d
+
+	measure 'Exploring Sessions' = SUM(FactBehavior[stage_exploration])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 2a23179d-0d4e-8bf0-814a-61a2128a886c
+
+	measure 'Product Interest Sessions' = SUM(FactBehavior[stage_product_interest])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 3ec02132-5510-979b-b34f-cd4c6a0262db
+
+	measure 'Add to Cart' = SUM(FactBehavior[add_to_cart])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: bc59662e-a1d4-1769-32ff-32fd0132b93b
+
+	measure Checkouts = SUM(FactBehavior[checkouts])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: d2aac36f-3e3e-bb30-bf03-87edab1ddc13
+
+	measure Conversions = SUM(FactBehavior[conversions])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 8b71506a-e8f9-5667-9c8b-efebc9052b0a
+
+	measure 'Session Seconds' = SUM(FactBehavior[total_session_seconds])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 1d49a474-88b3-21d3-87e8-7b817d272c5f
+
+	measure Revenue = SUM(FactBehavior[revenue])
+		formatString: \$#,0
+		displayFolder: 1 Base
+		lineageTag: 6b22bbc2-297d-afc1-341f-0be16ab34859
+
+	measure 'Scroll Depth Sum' = SUM(FactBehavior[scroll_depth_sum])
+		formatString: #,0
+		displayFolder: 1 Base
+		lineageTag: 75610268-7779-ce8e-cebd-0675f2bfc228
+
+	measure 'Days in Period' = DISTINCTCOUNT(FactBehavior[date])
+		formatString: 0
+		displayFolder: 1 Base
+		lineageTag: 9459cfee-cabb-eace-9238-4ff87385862b
+
+	/// Estimated unique visitors. Daily visitor counts cannot simply be summed across days, so returning visitor-days are de-duplicated with each segment's daily revisit probability.
+	measure 'Total Unique Visitors' =
+			VAR Days = [Days in Period]
+			RETURN
+			    SUMX(
+			        VALUES(DimSegment[segment_id]),
+			        VAR p = CALCULATE(MAX(DimSegment[daily_return_prob]))
+			        VAR nv = CALCULATE([New Visitors])
+			        VAR rv = CALCULATE([Returning Visitors])
+			        RETURN nv + DIVIDE(rv, 1 + (Days - 1) * p)
+			    )
+		formatString: #,0
+		displayFolder: 2 KPIs
+		lineageTag: ff91dd23-b13a-a9d6-bf7d-5e7f9f1119b6
+
+	/// Average daily visitors with an engaged session.
+	measure 'Active Users' = DIVIDE([Visitor Days] * DIVIDE([Engaged Sessions], [Sessions]), [Days in Period])
+		formatString: #,0
+		displayFolder: 2 KPIs
+		lineageTag: 49fd711e-c3f7-6a0f-f7e5-50ef3a421c82
+
+	measure 'Avg Session Duration (min)' = DIVIDE([Session Seconds], [Sessions]) / 60
+		formatString: 0.00
+		displayFolder: 2 KPIs
+		lineageTag: eb7a398e-23ef-330d-716e-ca1b333f9b59
+
+	measure 'Pages per Session' = DIVIDE([Page Views], [Sessions])
+		formatString: 0.00
+		displayFolder: 2 KPIs
+		lineageTag: 0a7f1403-5640-b7c5-2ffe-434a1758f0b5
+
+	measure 'Bounce Rate' = DIVIDE([Bounces], [Sessions])
+		formatString: 0.0%
+		displayFolder: 2 KPIs
+		lineageTag: 375d0761-e007-001a-f916-298c1019b3d3
+
+	measure 'Returning Visitor Rate' = 1 - DIVIDE([New Visitors], [Visitor Days])
+		formatString: 0.0%
+		displayFolder: 2 KPIs
+		lineageTag: 2f53553b-17bd-1d16-8b8c-f3f0403ec4ca
+
+	measure 'Conversion Rate' = DIVIDE([Conversions], [Sessions])
+		formatString: 0.00%
+		displayFolder: 2 KPIs
+		lineageTag: 6b04faa5-a1fa-ee1d-f475-a15310e2fe08
+
+	/// Composite 0–100 score: session duration, depth, bounce, scroll depth and engaged sessions.
+	measure 'Engagement Score' =
+			VAR s = [Sessions]
+			RETURN
+			    IF(
+			        s > 0,
+			        100 * (
+			            0.30 * MIN(1, DIVIDE([Session Seconds], s) / 480)
+			            + 0.20 * MIN(1, DIVIDE([Page Views], s) / 8)
+			            + 0.20 * (1 - DIVIDE([Bounces], s))
+			            + 0.15 * DIVIDE([Scroll Depth Sum], [Page Views])
+			            + 0.15 * DIVIDE([Engaged Sessions], s)
+			        )
+			    )
+		formatString: 0.0
+		displayFolder: 2 KPIs
+		lineageTag: 1c6285ed-8a6d-3eca-4d6f-ae2487cb966e
+
+	measure 'Avg Scroll Depth' = DIVIDE([Scroll Depth Sum], [Page Views])
+		formatString: 0%
+		displayFolder: 2 KPIs
+		lineageTag: 37c788f6-c7a6-38de-ba06-53a7bb721fb1
+
+	measure 'Clicks per Session' = DIVIDE([Clicks], [Sessions])
+		formatString: 0.0
+		displayFolder: 2 KPIs
+		lineageTag: b51a778d-bdc3-3a1e-5d8c-7e59ff3064ff
+
+	measure 'Searches per Session' = DIVIDE([Searches], [Sessions])
+		formatString: 0.00
+		displayFolder: 2 KPIs
+		lineageTag: 2c7585f5-72a3-46c8-af63-91b1e30aca38
+
+	/// Share of product-interest sessions that add to cart.
+	measure 'Cart Rate' = DIVIDE([Add to Cart], [Product Interest Sessions])
+		formatString: 0.0%
+		displayFolder: 2 KPIs
+		lineageTag: d6e9936f-9709-35ec-8c59-e5e3d7842b5f
+
+	measure 'Cart Abandonment' = 1 - DIVIDE([Conversions], [Add to Cart])
+		formatString: 0.0%
+		displayFolder: 2 KPIs
+		lineageTag: bf09f9f7-4daa-e74f-dfee-2d02e4dd847b
+
+	measure 'Checkout Abandonment' = 1 - DIVIDE([Conversions], [Checkouts])
+		formatString: 0.0%
+		displayFolder: 2 KPIs
+		lineageTag: 636978bd-f558-195e-f64c-2a59c23f90c5
+
+	measure 'Average Order Value' = DIVIDE([Revenue], [Conversions])
+		formatString: \$#,0.00
+		displayFolder: 2 KPIs
+		lineageTag: 3467010d-cb43-cde2-7f12-359fd9363ca3
+
+	measure 'Retention Rate 30d' = DIVIDE(SUMX(VALUES(DimSegment[segment_id]), CALCULATE([Visitor Days]) * CALCULATE(MAX(DimSegment[retention_rate_30d]))), [Visitor Days])
+		formatString: 0%
+		displayFolder: 2 KPIs
+		lineageTag: 50094a95-9e1f-30d0-fd9d-fa320536494f
+
+	/// Same KPI for the equal-length period immediately before the selected dates.
+	measure 'Total Unique Visitors PP' =
+			VAR MinD = MIN(DimDate[Date])
+			VAR MaxD = MAX(DimDate[Date])
+			VAR N = INT(MaxD - MinD) + 1
+			VAR DataStart = CALCULATE(MIN(DimDate[Date]), REMOVEFILTERS(DimDate))
+			RETURN
+			    IF(MinD - N >= DataStart, CALCULATE([Total Unique Visitors], REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1)))
+		formatString: #,0
+		displayFolder: 3 Period comparison
+		lineageTag: 734fd1f1-6565-733c-34ff-226745391772
+
+	measure 'Total Unique Visitors Change %' = IF(NOT ISBLANK([Total Unique Visitors PP]), DIVIDE([Total Unique Visitors] - [Total Unique Visitors PP], [Total Unique Visitors PP]))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: 6457e289-3c13-3d5b-4747-5abdf3b682d9
+
+	measure 'Total Unique Visitors Change Label' =
+			VAR d = [Total Unique Visitors Change %]
+			RETURN
+			    IF(ISBLANK(d), "no prior period in data", IF(d >= 0, "▲ ", "▼ ") & FORMAT(ABS(d), "0.0%") & " vs previous period")
+		displayFolder: 3 Period comparison
+		lineageTag: 60169c66-8aa2-e04e-c9ec-dc1c2033d6e9
+
+	measure 'Total Unique Visitors Change Color' =
+			VAR d = [Total Unique Visitors Change %]
+			RETURN
+			    SWITCH(TRUE(), ISBLANK(d), "#8792B0", d > 0, "#34D399", d = 0, "#8792B0", "#FB7185")
+		displayFolder: 3 Period comparison
+		lineageTag: 93e7a1d8-c642-c42d-26fc-9612673b343d
+
+	/// Same KPI for the equal-length period immediately before the selected dates.
+	measure 'Active Users PP' =
+			VAR MinD = MIN(DimDate[Date])
+			VAR MaxD = MAX(DimDate[Date])
+			VAR N = INT(MaxD - MinD) + 1
+			VAR DataStart = CALCULATE(MIN(DimDate[Date]), REMOVEFILTERS(DimDate))
+			RETURN
+			    IF(MinD - N >= DataStart, CALCULATE([Active Users], REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1)))
+		formatString: #,0
+		displayFolder: 3 Period comparison
+		lineageTag: 800f0448-d63c-992c-614e-5b356b1ff173
+
+	measure 'Active Users Change %' = IF(NOT ISBLANK([Active Users PP]), DIVIDE([Active Users] - [Active Users PP], [Active Users PP]))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: 1e657423-4734-2db2-8929-8b0d5597255a
+
+	measure 'Active Users Change Label' =
+			VAR d = [Active Users Change %]
+			RETURN
+			    IF(ISBLANK(d), "no prior period in data", IF(d >= 0, "▲ ", "▼ ") & FORMAT(ABS(d), "0.0%") & " vs previous period")
+		displayFolder: 3 Period comparison
+		lineageTag: 04ce19f2-26e5-6157-c3eb-437de2ed2df8
+
+	measure 'Active Users Change Color' =
+			VAR d = [Active Users Change %]
+			RETURN
+			    SWITCH(TRUE(), ISBLANK(d), "#8792B0", d > 0, "#34D399", d = 0, "#8792B0", "#FB7185")
+		displayFolder: 3 Period comparison
+		lineageTag: 89efee55-4922-b177-3500-e56d44b4852b
+
+	/// Same KPI for the equal-length period immediately before the selected dates.
+	measure 'Avg Session Duration (min) PP' =
+			VAR MinD = MIN(DimDate[Date])
+			VAR MaxD = MAX(DimDate[Date])
+			VAR N = INT(MaxD - MinD) + 1
+			VAR DataStart = CALCULATE(MIN(DimDate[Date]), REMOVEFILTERS(DimDate))
+			RETURN
+			    IF(MinD - N >= DataStart, CALCULATE([Avg Session Duration (min)], REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1)))
+		formatString: 0.00
+		displayFolder: 3 Period comparison
+		lineageTag: 426fd8ee-a61b-6d9d-02bf-06ca54c1e02b
+
+	measure 'Avg Session Duration (min) Change %' = IF(NOT ISBLANK([Avg Session Duration (min) PP]), DIVIDE([Avg Session Duration (min)] - [Avg Session Duration (min) PP], [Avg Session Duration (min) PP]))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: 722ed585-f67b-06bb-4ddd-bd30059f89fb
+
+	measure 'Avg Session Duration (min) Change Label' =
+			VAR d = [Avg Session Duration (min) Change %]
+			RETURN
+			    IF(ISBLANK(d), "no prior period in data", IF(d >= 0, "▲ ", "▼ ") & FORMAT(ABS(d), "0.0%") & " vs previous period")
+		displayFolder: 3 Period comparison
+		lineageTag: 73e18163-9db1-de06-f8d2-43dd6cf024e5
+
+	measure 'Avg Session Duration (min) Change Color' =
+			VAR d = [Avg Session Duration (min) Change %]
+			RETURN
+			    SWITCH(TRUE(), ISBLANK(d), "#8792B0", d > 0, "#34D399", d = 0, "#8792B0", "#FB7185")
+		displayFolder: 3 Period comparison
+		lineageTag: 89988a52-737b-8409-12ae-0aa80fc5e687
+
+	/// Same KPI for the equal-length period immediately before the selected dates.
+	measure 'Pages per Session PP' =
+			VAR MinD = MIN(DimDate[Date])
+			VAR MaxD = MAX(DimDate[Date])
+			VAR N = INT(MaxD - MinD) + 1
+			VAR DataStart = CALCULATE(MIN(DimDate[Date]), REMOVEFILTERS(DimDate))
+			RETURN
+			    IF(MinD - N >= DataStart, CALCULATE([Pages per Session], REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1)))
+		formatString: 0.00
+		displayFolder: 3 Period comparison
+		lineageTag: 1533d176-4402-2b46-929b-190c3e0f0d71
+
+	measure 'Pages per Session Change %' = IF(NOT ISBLANK([Pages per Session PP]), DIVIDE([Pages per Session] - [Pages per Session PP], [Pages per Session PP]))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: a7649be6-ff71-a965-c380-9eca515e586d
+
+	measure 'Pages per Session Change Label' =
+			VAR d = [Pages per Session Change %]
+			RETURN
+			    IF(ISBLANK(d), "no prior period in data", IF(d >= 0, "▲ ", "▼ ") & FORMAT(ABS(d), "0.0%") & " vs previous period")
+		displayFolder: 3 Period comparison
+		lineageTag: 3592cbfd-334d-f4e0-80d6-0bdca838e35a
+
+	measure 'Pages per Session Change Color' =
+			VAR d = [Pages per Session Change %]
+			RETURN
+			    SWITCH(TRUE(), ISBLANK(d), "#8792B0", d > 0, "#34D399", d = 0, "#8792B0", "#FB7185")
+		displayFolder: 3 Period comparison
+		lineageTag: 51aac32d-4b33-1d8f-1aa2-b70139d64ef1
+
+	/// Same KPI for the equal-length period immediately before the selected dates.
+	measure 'Bounce Rate PP' =
+			VAR MinD = MIN(DimDate[Date])
+			VAR MaxD = MAX(DimDate[Date])
+			VAR N = INT(MaxD - MinD) + 1
+			VAR DataStart = CALCULATE(MIN(DimDate[Date]), REMOVEFILTERS(DimDate))
+			RETURN
+			    IF(MinD - N >= DataStart, CALCULATE([Bounce Rate], REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1)))
+		formatString: 0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: d1991a3f-1078-07f7-0f40-2479a3f06b7c
+
+	measure 'Bounce Rate Change %' = IF(NOT ISBLANK([Bounce Rate PP]), DIVIDE([Bounce Rate] - [Bounce Rate PP], [Bounce Rate PP]))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: ab74d208-b8e1-d4ae-0667-bafe06d09d15
+
+	measure 'Bounce Rate Change Label' =
+			VAR d = [Bounce Rate Change %]
+			RETURN
+			    IF(ISBLANK(d), "no prior period in data", IF(d >= 0, "▲ ", "▼ ") & FORMAT(ABS(d), "0.0%") & " vs previous period")
+		displayFolder: 3 Period comparison
+		lineageTag: db43b97e-21b6-9e3b-1877-b3a573d4612e
+
+	measure 'Bounce Rate Change Color' =
+			VAR d = [Bounce Rate Change %]
+			RETURN
+			    SWITCH(TRUE(), ISBLANK(d), "#8792B0", d < 0, "#34D399", d = 0, "#8792B0", "#FB7185")
+		displayFolder: 3 Period comparison
+		lineageTag: 31918152-82ae-13a7-833f-694390b0238d
+
+	/// Same KPI for the equal-length period immediately before the selected dates.
+	measure 'Returning Visitor Rate PP' =
+			VAR MinD = MIN(DimDate[Date])
+			VAR MaxD = MAX(DimDate[Date])
+			VAR N = INT(MaxD - MinD) + 1
+			VAR DataStart = CALCULATE(MIN(DimDate[Date]), REMOVEFILTERS(DimDate))
+			RETURN
+			    IF(MinD - N >= DataStart, CALCULATE([Returning Visitor Rate], REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1)))
+		formatString: 0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: 8699b3aa-768e-a422-f8da-a998dbca1f9c
+
+	measure 'Returning Visitor Rate Change %' = IF(NOT ISBLANK([Returning Visitor Rate PP]), DIVIDE([Returning Visitor Rate] - [Returning Visitor Rate PP], [Returning Visitor Rate PP]))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: 6c2e8b5f-dbad-c90c-4c31-8271ab4b799c
+
+	measure 'Returning Visitor Rate Change Label' =
+			VAR d = [Returning Visitor Rate Change %]
+			RETURN
+			    IF(ISBLANK(d), "no prior period in data", IF(d >= 0, "▲ ", "▼ ") & FORMAT(ABS(d), "0.0%") & " vs previous period")
+		displayFolder: 3 Period comparison
+		lineageTag: bbdf303f-bb40-29d1-e551-123985f7fdf7
+
+	measure 'Returning Visitor Rate Change Color' =
+			VAR d = [Returning Visitor Rate Change %]
+			RETURN
+			    SWITCH(TRUE(), ISBLANK(d), "#8792B0", d > 0, "#34D399", d = 0, "#8792B0", "#FB7185")
+		displayFolder: 3 Period comparison
+		lineageTag: 9221100e-1179-df94-6ca8-f334d703aa6d
+
+	/// Same KPI for the equal-length period immediately before the selected dates.
+	measure 'Conversion Rate PP' =
+			VAR MinD = MIN(DimDate[Date])
+			VAR MaxD = MAX(DimDate[Date])
+			VAR N = INT(MaxD - MinD) + 1
+			VAR DataStart = CALCULATE(MIN(DimDate[Date]), REMOVEFILTERS(DimDate))
+			RETURN
+			    IF(MinD - N >= DataStart, CALCULATE([Conversion Rate], REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1)))
+		formatString: 0.00%
+		displayFolder: 3 Period comparison
+		lineageTag: 0ad04e16-a063-d37f-5d2a-226a67c974c0
+
+	measure 'Conversion Rate Change %' = IF(NOT ISBLANK([Conversion Rate PP]), DIVIDE([Conversion Rate] - [Conversion Rate PP], [Conversion Rate PP]))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: 1b8684de-7875-2f67-3428-4efded157479
+
+	measure 'Conversion Rate Change Label' =
+			VAR d = [Conversion Rate Change %]
+			RETURN
+			    IF(ISBLANK(d), "no prior period in data", IF(d >= 0, "▲ ", "▼ ") & FORMAT(ABS(d), "0.0%") & " vs previous period")
+		displayFolder: 3 Period comparison
+		lineageTag: e9f27531-6dd9-d1f7-33ca-1590b05b8516
+
+	measure 'Conversion Rate Change Color' =
+			VAR d = [Conversion Rate Change %]
+			RETURN
+			    SWITCH(TRUE(), ISBLANK(d), "#8792B0", d > 0, "#34D399", d = 0, "#8792B0", "#FB7185")
+		displayFolder: 3 Period comparison
+		lineageTag: 2de28e99-1eb9-0947-e45e-8eb1bfe254f1
+
+	/// Same KPI for the equal-length period immediately before the selected dates.
+	measure 'Engagement Score PP' =
+			VAR MinD = MIN(DimDate[Date])
+			VAR MaxD = MAX(DimDate[Date])
+			VAR N = INT(MaxD - MinD) + 1
+			VAR DataStart = CALCULATE(MIN(DimDate[Date]), REMOVEFILTERS(DimDate))
+			RETURN
+			    IF(MinD - N >= DataStart, CALCULATE([Engagement Score], REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1)))
+		formatString: 0.0
+		displayFolder: 3 Period comparison
+		lineageTag: cf4b9766-defc-ab82-ca62-405faf650f6e
+
+	measure 'Engagement Score Change %' = IF(NOT ISBLANK([Engagement Score PP]), DIVIDE([Engagement Score] - [Engagement Score PP], [Engagement Score PP]))
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 3 Period comparison
+		lineageTag: 425bc495-22ec-9476-d494-d751a3769625
+
+	measure 'Engagement Score Change Label' =
+			VAR d = [Engagement Score Change %]
+			RETURN
+			    IF(ISBLANK(d), "no prior period in data", IF(d >= 0, "▲ ", "▼ ") & FORMAT(ABS(d), "0.0%") & " vs previous period")
+		displayFolder: 3 Period comparison
+		lineageTag: a2fa1bb1-827b-be22-cf25-eef9e982e3b8
+
+	measure 'Engagement Score Change Color' =
+			VAR d = [Engagement Score Change %]
+			RETURN
+			    SWITCH(TRUE(), ISBLANK(d), "#8792B0", d > 0, "#34D399", d = 0, "#8792B0", "#FB7185")
+		displayFolder: 3 Period comparison
+		lineageTag: 8b11e65e-7710-ed0f-c7d4-648c48e8ecd3
+
+	/// Value of the KPI picked in the KPI selector slicer.
+	measure 'Selected KPI' =
+			SWITCH(
+			    SELECTEDVALUE(KPISelector[KPI], "Total Unique Visitors"),
+			    "Total Unique Visitors", [Total Unique Visitors],
+			    "Active Users", [Active Users],
+			    "Avg Session Duration (min)", [Avg Session Duration (min)],
+			    "Pages per Session", [Pages per Session],
+			    "Bounce Rate", [Bounce Rate],
+			    "Returning Visitor Rate", [Returning Visitor Rate],
+			    "Conversion Rate", [Conversion Rate],
+			    "Engagement Score", [Engagement Score],
+			    BLANK()
+			)
+		formatString: #,0.00
+		displayFolder: 2 KPIs
+		lineageTag: a5434678-ac7f-a6a1-32e7-c64ba1b270a6
+
+	measure 'Selected KPI Title' = "Daily trend — " & SELECTEDVALUE(KPISelector[KPI], "Total Unique Visitors")
+		displayFolder: 2 KPIs
+		lineageTag: b3529659-00d5-e127-e199-6d10650315aa
+
+	/// Sessions attributed to traffic sources via the modeled segment × channel mix.
+	measure 'Channel Sessions' = SUMX(ChannelMix, ChannelMix[share] * CALCULATE([Sessions], TREATAS({ChannelMix[segment_id]}, DimSegment[segment_id])))
+		formatString: #,0
+		displayFolder: 4 Channels
+		lineageTag: b69694f6-ce80-22bf-5f56-af9324b7cadf
+
+	measure 'Channel Conversions' = SUMX(ChannelMix, ChannelMix[conv_coef] * CALCULATE([Conversions], TREATAS({ChannelMix[segment_id]}, DimSegment[segment_id])))
+		formatString: #,0
+		displayFolder: 4 Channels
+		lineageTag: 1de163e3-7214-396a-59be-1939020bba60
+
+	measure 'Channel Avg Duration (min)' = DIVIDE(SUMX(ChannelMix, ChannelMix[dur_coef] * CALCULATE([Session Seconds], TREATAS({ChannelMix[segment_id]}, DimSegment[segment_id]))), [Channel Sessions]) / 60
+		formatString: 0.00
+		displayFolder: 4 Channels
+		lineageTag: 124d539e-0976-4c9e-81be-370d08c3671b
+
+	measure 'Channel Bounce Rate' = DIVIDE(SUMX(ChannelMix, ChannelMix[bounce_coef] * CALCULATE([Bounces], TREATAS({ChannelMix[segment_id]}, DimSegment[segment_id]))), [Channel Sessions])
+		formatString: 0.0%
+		displayFolder: 4 Channels
+		lineageTag: 1224c38c-9e9c-a117-8642-265666d6f9d8
+
+	measure 'Channel Conversion Rate' = DIVIDE([Channel Conversions], [Channel Sessions])
+		formatString: 0.00%
+		displayFolder: 4 Channels
+		lineageTag: 4854a291-f8f0-b070-3aca-d2662cc8945c
+
+	/// Filtered page views distributed to page templates using the segment page mix.
+	measure 'Page Views (modeled)' = SUMX(PageMix, PageMix[weight] * CALCULATE([Page Views], TREATAS({PageMix[segment_id]}, DimSegment[segment_id])))
+		formatString: #,0
+		displayFolder: 5 Pages & navigation
+		lineageTag: e2c09864-74b8-cb53-4825-41af53be1dce
+
+	/// Estimated page-to-page transitions = filtered page views × transition probability.
+	measure 'Est. Transitions' = SUMX(Transitions, Transitions[probability] * CALCULATE([Page Views (modeled)], TREATAS({Transitions[from_page_id]}, DimPage[page_id])))
+		formatString: #,0
+		displayFolder: 5 Pages & navigation
+		lineageTag: 598bf5d0-c13a-af3f-eded-23523b1f3e3b
+
+	measure 'Transition Probability' = DIVIDE([Est. Transitions], [Page Views (modeled)])
+		formatString: 0.0%
+		displayFolder: 5 Pages & navigation
+		lineageTag: 8681964f-f85b-bcfe-ee5a-587a2380effa
+
+	measure 'Product Views (modeled)' = SUMX(CategoryMix, CategoryMix[weight] * CALCULATE([Product Views], TREATAS({CategoryMix[segment_id]}, DimSegment[segment_id])))
+		formatString: #,0
+		displayFolder: 6 Preferences
+		lineageTag: a7b70665-58ea-aad3-80d4-b50ec7504dee
+
+	measure 'Category Share' = DIVIDE([Product Views (modeled)], CALCULATE([Product Views (modeled)], REMOVEFILTERS(CategoryMix[category], CategoryMix[subcategory])))
+		formatString: 0.0%
+		displayFolder: 6 Preferences
+		lineageTag: 1033b7aa-80d1-a632-48a7-d84e4c9b0aff
+
+	measure 'Stage Sessions' =
+			SWITCH(
+			    SELECTEDVALUE(JourneyStages[Stage Order]),
+			    1, [Sessions],
+			    2, [Landed Sessions],
+			    3, [Exploring Sessions],
+			    4, [Product Interest Sessions],
+			    5, [Add to Cart],
+			    6, [Checkouts],
+			    7, [Conversions]
+			)
+		formatString: #,0
+		displayFolder: 7 Journey
+		lineageTag: 64890857-d6b7-99c7-aa3f-62d4e800e414
+
+	measure 'Stage Conversion from Previous' =
+			VAR o = SELECTEDVALUE(JourneyStages[Stage Order])
+			VAR prev = CALCULATE([Stage Sessions], REMOVEFILTERS(JourneyStages), JourneyStages[Stage Order] = o - 1)
+			RETURN
+			    IF(o = 1, 1, DIVIDE([Stage Sessions], prev))
+		formatString: 0.0%
+		displayFolder: 7 Journey
+		lineageTag: d97e31c5-807d-40a9-f9d2-e292fd3b217a
+
+	measure 'Stage Drop-off' = IF(NOT ISBLANK([Stage Sessions]), 1 - [Stage Conversion from Previous])
+		formatString: 0.0%
+		displayFolder: 7 Journey
+		lineageTag: 6d90afb7-5ea8-e3a7-62ae-ce7d72189358
+
+	measure 'Stage Share of Sessions' = DIVIDE([Stage Sessions], [Sessions])
+		formatString: 0.00%
+		displayFolder: 7 Journey
+		lineageTag: 1e8bcf8f-36f5-4708-77b4-23152827719d
+
+	measure 'Journey Completion Rate' = DIVIDE([Conversions], [Sessions])
+		formatString: 0.00%
+		displayFolder: 7 Journey
+		lineageTag: eee44979-7291-d005-f4e5-abfbde67d1d0
+
+	measure 'Budget Change Value' = SELECTEDVALUE(ParamBudget[Budget Change %], 0)
+		formatString: 0
+		displayFolder: 8 Simulated predictions
+		lineageTag: abe94388-445e-5f41-3bb8-78c6d77747fe
+
+	measure 'Personalization Value' = SELECTEDVALUE(ParamPersonalization[Personalization Level], 0)
+		formatString: 0
+		displayFolder: 8 Simulated predictions
+		lineageTag: f10baf1e-825b-fc3f-887d-aaa886c03dc7
+
+	measure 'Discount Value' = SELECTEDVALUE(ParamDiscount[Discount %], 0)
+		formatString: 0
+		displayFolder: 8 Simulated predictions
+		lineageTag: 64d961ac-e1a1-cdf1-365c-e6f7e15de019
+
+	measure 'Email Cadence Value' = SELECTEDVALUE(ParamEmail[Emails per Week], 2)
+		formatString: 0
+		displayFolder: 8 Simulated predictions
+		lineageTag: 5a29fa00-6b87-34a7-f483-87d033d4b6e0
+
+	measure 'Retargeting On' = IF(SELECTEDVALUE(ParamRetargeting[Consented Retargeting], "No") = "Yes", 1, 0)
+		formatString: 0
+		displayFolder: 8 Simulated predictions
+		lineageTag: b56c641d-959d-0354-4bda-b88a158e269a
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Baseline Purchase Intent' = IF([Sessions] > 0, 1 / (1 + EXP(-(-1.6 + 4 * [Cart Rate] + 1.2 * [Engagement Score] / 100))))
+		formatString: 0.0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: 17e6760a-f479-47f6-aefb-4c307c47d9df
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Scenario Purchase Intent' = IF([Sessions] > 0, 1 / (1 + EXP(-(-1.6 + 4 * [Cart Rate] + 1.2 * [Engagement Score] / 100 + 0.35 * LN(1 + [Budget Change Value] / 100) + 0.006 * [Personalization Value] + 0.02 * [Discount Value] + 0.18 * [Retargeting On]))))
+		formatString: 0.0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: 660da277-7879-adcf-b8ea-46f44026d153
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Purchase Intent Change (pts)' = ([Scenario Purchase Intent] - [Baseline Purchase Intent]) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 8 Simulated predictions
+		lineageTag: 40eee002-4a69-a28a-d238-a2f7372e562d
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Baseline Churn Risk' = IF([Sessions] > 0, 1 / (1 + EXP(-(1.2 - 3.2 * [Retention Rate 30d] - 1.5 * [Engagement Score] / 100))))
+		formatString: 0.0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: 3fd5aaca-60b6-f1cd-9cd4-6c0b06517074
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Scenario Churn Risk' = IF([Sessions] > 0, 1 / (1 + EXP(-(1.2 - 3.2 * [Retention Rate 30d] - 1.5 * [Engagement Score] / 100 + -0.1 * LN(1 + [Budget Change Value] / 100) - 0.008 * [Personalization Value] - 0.1 * ([Email Cadence Value] - 2) + 0.06 * POWER(MAX(0, [Email Cadence Value] - 4), 2) - 0.01 * [Discount Value]))))
+		formatString: 0.0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: a5e95649-9159-a446-3819-21871dea81fa
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Churn Risk Change (pts)' = ([Scenario Churn Risk] - [Baseline Churn Risk]) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 8 Simulated predictions
+		lineageTag: cc8ff0e3-475a-e6d4-9f57-91d0acee69c1
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Baseline Repeat Visit Likelihood' = IF([Sessions] > 0, 1 / (1 + EXP(-(-1 + 2.6 * [Returning Visitor Rate] + 1.4 * [Engagement Score] / 100))))
+		formatString: 0.0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: aede679a-a516-bc9a-72f5-21542771d56f
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Scenario Repeat Visit Likelihood' = IF([Sessions] > 0, 1 / (1 + EXP(-(-1 + 2.6 * [Returning Visitor Rate] + 1.4 * [Engagement Score] / 100 + 0.15 * LN(1 + [Budget Change Value] / 100) + 0.006 * [Personalization Value] + 0.12 * ([Email Cadence Value] - 2) - 0.03 * POWER([Email Cadence Value] - 2, 2) + 0.2 * [Retargeting On]))))
+		formatString: 0.0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: 7e29312c-4aaf-821c-746e-3ce216a75325
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Repeat Visit Likelihood Change (pts)' = ([Scenario Repeat Visit Likelihood] - [Baseline Repeat Visit Likelihood]) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 8 Simulated predictions
+		lineageTag: fc6c8177-b075-35b4-b762-bbc444cc2233
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Baseline Conversion Probability' = IF([Sessions] > 0, 1 / (1 + EXP(-(LN(DIVIDE(MAX(0.000001, [Conversion Rate]), 1 - [Conversion Rate]))))))
+		formatString: 0.00%
+		displayFolder: 8 Simulated predictions
+		lineageTag: db7088a3-e31d-6054-5496-37546f668507
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Scenario Conversion Probability' = IF([Sessions] > 0, 1 / (1 + EXP(-(LN(DIVIDE(MAX(0.000001, [Conversion Rate]), 1 - [Conversion Rate])) + 0.25 * LN(1 + [Budget Change Value] / 100) + 0.004 * [Personalization Value] + 0.035 * [Discount Value] + 0.12 * [Retargeting On]))))
+		formatString: 0.00%
+		displayFolder: 8 Simulated predictions
+		lineageTag: 755fb71d-b7c5-e98e-be79-c4455b74e27a
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Conversion Probability Change (pts)' = ([Scenario Conversion Probability] - [Baseline Conversion Probability]) * 100
+		formatString: +0.0;-0.0;0.0
+		displayFolder: 8 Simulated predictions
+		lineageTag: e4f7fa85-4293-3d45-28ac-22ddaab6bc41
+
+	measure 'Gauge Max 100%' = 1
+		formatString: 0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: ce9f8f7a-64a6-518b-9a26-5eebbc8cd396
+
+	measure 'Gauge Max 10%' = 0.1
+		formatString: 0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: 496d59cd-2c80-aaee-8397-a02711764589
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Traffic Multiplier' = MAX(0.3, 1 + 0.42 * LN(1 + [Budget Change Value] / 100) + 0.04 * [Retargeting On] + 0.04 * ([Email Cadence Value] - 2) / 2)
+		formatString: 0.00
+		displayFolder: 8 Simulated predictions
+		lineageTag: bdee7c0f-974f-7a36-51e3-2b0b183c8db6
+
+	/// Run-rate of the selected period scaled to 30 days. SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Baseline 30d Conversions' = DIVIDE([Conversions], [Days in Period]) * 30
+		formatString: #,0
+		displayFolder: 8 Simulated predictions
+		lineageTag: fd06c5b9-4108-5d73-608b-3a8c8e5f4ae4
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Scenario 30d Conversions' = [Baseline 30d Conversions] * DIVIDE([Scenario Conversion Probability], [Baseline Conversion Probability]) * [Traffic Multiplier]
+		formatString: #,0
+		displayFolder: 8 Simulated predictions
+		lineageTag: d6d08cfc-91bf-f38c-321b-6cab8fe09b6e
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Baseline 30d Revenue' = [Baseline 30d Conversions] * [Average Order Value]
+		formatString: \$#,0
+		displayFolder: 8 Simulated predictions
+		lineageTag: 74df5790-039c-e1fd-776f-06ef62ca9413
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Scenario 30d Revenue' = [Scenario 30d Conversions] * [Average Order Value] * (1 - [Discount Value] / 100 * 0.85)
+		formatString: \$#,0
+		displayFolder: 8 Simulated predictions
+		lineageTag: e6ca7c05-8e95-afad-9a52-e391bd68bc01
+
+	/// SIMULATED — heuristic formula, not a trained or validated model.
+	measure 'Scenario Conversions Change %' = DIVIDE([Scenario 30d Conversions], [Baseline 30d Conversions]) - 1
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 8 Simulated predictions
+		lineageTag: 0064917e-5369-21ad-5371-5af9f09cb3e3
+
+	measure 'Simulation Disclaimer' = "SIMULATED what-if forecast: transparent heuristic formulas over synthetic history. Not a validated AI/ML prediction."
+		displayFolder: 8 Simulated predictions
+		lineageTag: 61475b74-71d9-24c2-7dfa-562289971d8e
+
+	/// Evidence text for each predefined analytical rule. No AI model is called.
+	measure 'Insight Evidence' =
+			VAR id = SELECTEDVALUE(InsightRules[Rule ID])
+			RETURN
+			    SWITCH(
+			        id,
+			        1,
+			            VAR f = CALCULATE([Engagement Score], DimSegment[segment_id] = "first")
+			            VAR r = CALCULATE([Engagement Score], DimSegment[segment_id] <> "first")
+			            RETURN IF(NOT ISBLANK(f) && NOT ISBLANK(r) && r > f, "Returning audiences score " & FORMAT(r, "0.0") & " on engagement vs " & FORMAT(f, "0.0") & " for first-time visitors.", "Not triggered for current filters"),
+			        2,
+			            VAR m = CALCULATE([Cart Abandonment], DimDevice[device_id] = "mobile")
+			            VAR d = CALCULATE([Cart Abandonment], DimDevice[device_id] = "desktop")
+			            VAR ok = CALCULATE([Add to Cart], DimDevice[device_id] = "mobile") > 50 && CALCULATE([Add to Cart], DimDevice[device_id] = "desktop") > 50
+			            RETURN IF(ok && m > d, FORMAT(m, "0.0%") & " of mobile carts do not convert vs " & FORMAT(d, "0.0%") & " on desktop.", "Not triggered for current filters"),
+			        3,
+			            VAR c = CALCULATE(MAX(Transitions[probability]), Transitions[from_page_id] = "compare", Transitions[to_page_id] = "cart")
+			            VAR p = CALCULATE(MAX(Transitions[probability]), Transitions[from_page_id] = "product", Transitions[to_page_id] = "cart")
+			            RETURN IF(c > p, FORMAT(c, "0.0%") & " of comparison views go straight to the cart vs " & FORMAT(p, "0.0%") & " from a product page.", "Not triggered for current filters"),
+			        4,
+			            VAR o = CALCULATE([Channel Avg Duration (min)], ChannelMix[channel] = "Organic Search")
+			            VAR a = [Avg Session Duration (min)]
+			            RETURN IF(o > a, "Organic sessions average " & FORMAT(o, "0.0") & " min vs " & FORMAT(a, "0.0") & " min site-wide.", "Not triggered for current filters"),
+			        5,
+			            VAR t = TOPN(1, VALUES(ChannelMix[channel]), [Channel Conversion Rate], DESC)
+			            VAR nm = MAXX(t, ChannelMix[channel])
+			            VAR v = MAXX(t, [Channel Conversion Rate])
+			            RETURN IF(NOT ISBLANK(v), nm & " converts at " & FORMAT(v, "0.00%") & " vs " & FORMAT([Conversion Rate], "0.00%") & " overall.", "Not triggered for current filters"),
+			        6,
+			            VAR w = CALCULATE([Cart Rate], DimSegment[segment_id] = "window")
+			            VAR s = [Cart Rate]
+			            RETURN IF(NOT ISBLANK(w) && w < s, "Only " & FORMAT(w, "0.0%") & " of interested Window Shopper sessions add to cart (site " & FORMAT(s, "0.0%") & ").", "Not triggered for current filters"),
+			        7,
+			            VAR regs = FILTER(VALUES(DimRegion[region_name]), [Sessions] > 50)
+			            VAR hi = TOPN(1, regs, [Conversion Rate], DESC)
+			            VAR lo = TOPN(1, regs, [Conversion Rate], ASC)
+			            RETURN IF(COUNTROWS(regs) > 1, MAXX(hi, DimRegion[region_name]) & " leads at " & FORMAT(MAXX(hi, [Conversion Rate]), "0.00%") & "; " & MAXX(lo, DimRegion[region_name]) & " trails at " & FORMAT(MAXX(lo, [Conversion Rate]), "0.00%") & ".", "Not triggered for current filters"),
+			        8,
+			            VAR c1 = [Conversion Rate]
+			            VAR c0 = [Conversion Rate PP]
+			            RETURN IF(NOT ISBLANK(c0), "Conversion rate " & IF(c1 >= c0, "improved", "declined") & " from " & FORMAT(c0, "0.00%") & " to " & FORMAT(c1, "0.00%") & ".", "Not triggered for current filters"),
+			        9,
+			            VAR MinD = MIN(DimDate[Date])
+			            VAR N = INT(MAX(DimDate[Date]) - MinD) + 1
+			            VAR cur = CALCULATE([Visitor Days], DimSegment[segment_id] = "atrisk")
+			            VAR prv = CALCULATE([Visitor Days], DimSegment[segment_id] = "atrisk", REMOVEFILTERS(DimDate), DATESBETWEEN(DimDate[Date], MinD - N, MinD - 1))
+			            RETURN IF(prv > 0 && cur > prv * 1.01, "At-Risk visitor-days grew " & FORMAT(cur / prv - 1, "0.0%") & " vs the previous period.", "Not triggered for current filters"),
+			        "Not triggered for current filters"
+			    )
+		displayFolder: 9 Rule-based insights
+		lineageTag: 345b8d07-dcd0-6bff-22b8-9730a2167bc4
+
+	measure 'Insight Triggered' = IF(ISBLANK(SELECTEDVALUE(InsightRules[Rule ID])), BLANK(), IF([Insight Evidence] = "Not triggered for current filters", "No", "Yes"))
+		displayFolder: 9 Rule-based insights
+		lineageTag: 0e529260-0afe-ce49-a8d1-248dbf396f58
+
+	measure 'Insights Triggered Count' = COUNTROWS(FILTER(VALUES(InsightRules[Rule ID]), [Insight Evidence] <> "Not triggered for current filters"))
+		formatString: 0
+		displayFolder: 9 Rule-based insights
+		lineageTag: 0c6db719-898a-48c6-eb5c-8079c850fd23
+
+	measure 'Insights Summary' = [Insights Triggered Count] & " of " & COUNTROWS(InsightRules) & " rules triggered for " & FORMAT([Sessions], "#,0") & " sessions in scope"
+		displayFolder: 9 Rule-based insights
+		lineageTag: c0a15c86-cd71-5067-8de6-06fc5a2c29a4
+
+	measure 'Scope Label' = "Synthetic data · " & FORMAT(MIN(DimDate[Date]), "mmm d") & " – " & FORMAT(MAX(DimDate[Date]), "mmm d, yyyy") & " · " & FORMAT([Sessions], "#,0") & " sessions in scope"
+		displayFolder: 2 KPIs
+		lineageTag: ab2ee592-3651-a786-6476-aa53f63016dc
+
+	column Placeholder
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: ec26b66a-cfa4-3272-b252-92b59fb9faa8
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Placeholder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source =
+				ROW("Placeholder", 0)

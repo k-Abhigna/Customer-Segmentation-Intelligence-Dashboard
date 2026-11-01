@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "97e6fccbc3f74a5a1038",
+  "position": {
+    "x": 958,
+    "y": 300,
+    "z": 16000,
+    "height": 230,
+    "width": 302,
+    "tabOrder": 16000
+  },
+  "visual": {
+    "visualType": "gauge",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Scenario Conversion Probability"
+                }
+              },
+              "queryRef": "_Measures.Scenario Conversion Probability",
+              "nativeQueryRef": "Scenario Conversion Probability"
+            }
+          ]
+        },
+        "MaxValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Gauge Max 10%"
+                }
+              },
+              "queryRef": "_Measures.Gauge Max 10%",
+              "nativeQueryRef": "Gauge Max 10%"
+            }
+          ]
+        },
+        "TargetValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Baseline Conversion Probability"
+                }
+              },
+              "queryRef": "_Measures.Baseline Conversion Probability",
+              "nativeQueryRef": "Baseline Conversion Probability"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Conversion Probability (target line = baseline)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+table DimDevice
+	lineageTag: 001ec3bf-19b5-b62c-3c72-9273359ff3cd
+
+	column device_id
+		dataType: string
+		isHidden
+		lineageTag: ff818518-64d7-0f0e-602a-9186a3401be3
+		summarizeBy: none
+		sourceColumn: device_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column device_name
+		dataType: string
+		lineageTag: 2cdbe2e6-c2f0-3e79-f2f1-fd86abcd5c8d
+		summarizeBy: none
+		sourceColumn: device_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column color_hex
+		dataType: string
+		isHidden
+		lineageTag: b30daf91-7b3c-8eda-5f54-8a494aa1ec27
+		summarizeBy: none
+		sourceColumn: color_hex
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDevice = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_device.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"device_id", type text}, {"device_name", type text}, {"color_hex", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

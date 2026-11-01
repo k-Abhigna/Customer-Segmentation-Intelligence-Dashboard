@@ -1,0 +1,63 @@
+/// Next-page transition probabilities (Markov model, full period). Transition volumes are recomputed from filtered page views in DAX.
+table Transitions
+	lineageTag: 45324cb5-7afd-5e94-d065-352c6b2f9ede
+
+	column from_page_id
+		dataType: string
+		isHidden
+		lineageTag: 0615aeae-b714-c913-0924-064ea19e5135
+		summarizeBy: none
+		sourceColumn: from_page_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_page_id
+		dataType: string
+		isHidden
+		lineageTag: 82cf3cb3-b2a0-9e6c-4a45-defc6fa7c2d5
+		summarizeBy: none
+		sourceColumn: to_page_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column probability
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 52f747ff-c7e7-07fc-cd54-7e7054acf4da
+		summarizeBy: none
+		sourceColumn: probability
+
+		annotation SummarizationSetBy = Automatic
+
+	column est_transitions
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: e539cac3-9750-ebd5-f22c-122a38d8b016
+		summarizeBy: sum
+		sourceColumn: est_transitions
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_page_name
+		dataType: string
+		lineageTag: d9d373a9-87e4-832a-8aa3-5fc0b394dc48
+		summarizeBy: none
+		sourceColumn: to_page_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Transitions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_navigation_transitions.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"from_page_id", type text}, {"to_page_id", type text}, {"probability", type number}, {"est_transitions", Int64.Type}}, "en-US"),
+				    ToName = Table.AddColumn(Typed, "to_page_name", each Record.FieldOrDefault([#"home" = "Home", #"category" = "Category Listing", #"product" = "Product Detail", #"compare" = "Product Comparison", #"search" = "Search Results", #"reviews" = "Reviews", #"blog" = "Blog & Stories", #"guides" = "Buying Guides", #"deals" = "Deals & Offers", #"campaign" = "Autumn Campaign LP", #"cart" = "Cart", #"checkout" = "Checkout", #"help" = "Help & Shipping", #"exit" = "Exit site"], [to_page_id], [to_page_id]), type text)
+				in
+				    ToName
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

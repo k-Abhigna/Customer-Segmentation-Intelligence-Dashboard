@@ -1,0 +1,246 @@
+/// Share of product views per category / subcategory for each segment.
+table CategoryMix
+	lineageTag: 3a29c1fe-258e-2f1b-300f-e048504a3679
+
+	column segment_id
+		dataType: string
+		isHidden
+		lineageTag: 3f45c671-9a2d-5520-5ed1-558d95de77d2
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: fa38f84e-b18d-715f-1e53-5325ece90a4f
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column subcategory
+		dataType: string
+		lineageTag: c6cf5b15-c771-d22d-f0f8-590d3d2c9dfc
+		summarizeBy: none
+		sourceColumn: subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight
+		dataType: double
+		isHidden
+		lineageTag: a412f884-f820-d7ca-472f-2c2fcff4208e
+		summarizeBy: none
+		sourceColumn: weight
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CategoryMix = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [segment_id = text, category = text, subcategory = text, weight = number], {
+				        {"engaged", "Electronics", "Headphones", 0.068073},
+				        {"engaged", "Electronics", "Smart Home", 0.0576},
+				        {"engaged", "Electronics", "Laptops", 0.052364},
+				        {"engaged", "Electronics", "Wearables", 0.047127},
+				        {"engaged", "Electronics", "Cameras", 0.036655},
+				        {"engaged", "Home & Living", "Furniture", 0.051818},
+				        {"engaged", "Home & Living", "Kitchen", 0.048364},
+				        {"engaged", "Home & Living", "Lighting", 0.031091},
+				        {"engaged", "Home & Living", "Decor", 0.041455},
+				        {"engaged", "Fashion", "Outerwear", 0.052364},
+				        {"engaged", "Fashion", "Footwear", 0.049091},
+				        {"engaged", "Fashion", "Accessories", 0.036},
+				        {"engaged", "Fashion", "Basics", 0.026182},
+				        {"engaged", "Sports & Outdoors", "Fitness", 0.049745},
+				        {"engaged", "Sports & Outdoors", "Camping", 0.034036},
+				        {"engaged", "Sports & Outdoors", "Cycling", 0.026182},
+				        {"engaged", "Sports & Outdoors", "Running", 0.020945},
+				        {"engaged", "Beauty & Care", "Skincare", 0.04},
+				        {"engaged", "Beauty & Care", "Fragrance", 0.027273},
+				        {"engaged", "Beauty & Care", "Haircare", 0.023636},
+				        {"engaged", "Books & Media", "Non-fiction", 0.039273},
+				        {"engaged", "Books & Media", "Fiction", 0.035345},
+				        {"engaged", "Books & Media", "Audio", 0.023564},
+				        {"engaged", "Toys & Games", "Board Games", 0.021818},
+				        {"engaged", "Toys & Games", "STEM Kits", 0.018545},
+				        {"engaged", "Toys & Games", "Puzzles", 0.014182},
+				        {"engaged", "Gourmet & Grocery", "Coffee & Tea", 0.015273},
+				        {"engaged", "Gourmet & Grocery", "Pantry", 0.012},
+				        {"first", "Electronics", "Headphones", 0.061237},
+				        {"first", "Electronics", "Smart Home", 0.051816},
+				        {"first", "Electronics", "Laptops", 0.047105},
+				        {"first", "Electronics", "Wearables", 0.042395},
+				        {"first", "Electronics", "Cameras", 0.032974},
+				        {"first", "Home & Living", "Furniture", 0.055937},
+				        {"first", "Home & Living", "Kitchen", 0.052208},
+				        {"first", "Home & Living", "Lighting", 0.033562},
+				        {"first", "Home & Living", "Decor", 0.04475},
+				        {"first", "Fashion", "Outerwear", 0.065005},
+				        {"first", "Fashion", "Footwear", 0.060942},
+				        {"first", "Fashion", "Accessories", 0.044691},
+				        {"first", "Fashion", "Basics", 0.032502},
+				        {"first", "Sports & Outdoors", "Fitness", 0.04475},
+				        {"first", "Sports & Outdoors", "Camping", 0.030618},
+				        {"first", "Sports & Outdoors", "Cycling", 0.023553},
+				        {"first", "Sports & Outdoors", "Running", 0.018842},
+				        {"first", "Beauty & Care", "Skincare", 0.04318},
+				        {"first", "Beauty & Care", "Fragrance", 0.029441},
+				        {"first", "Beauty & Care", "Haircare", 0.025515},
+				        {"first", "Books & Media", "Non-fiction", 0.028263},
+				        {"first", "Books & Media", "Fiction", 0.025437},
+				        {"first", "Books & Media", "Audio", 0.016958},
+				        {"first", "Toys & Games", "Board Games", 0.023553},
+				        {"first", "Toys & Games", "STEM Kits", 0.02002},
+				        {"first", "Toys & Games", "Puzzles", 0.015309},
+				        {"first", "Gourmet & Grocery", "Coffee & Tea", 0.016487},
+				        {"first", "Gourmet & Grocery", "Pantry", 0.012954},
+				        {"returning", "Electronics", "Headphones", 0.058209},
+				        {"returning", "Electronics", "Smart Home", 0.049254},
+				        {"returning", "Electronics", "Laptops", 0.044776},
+				        {"returning", "Electronics", "Wearables", 0.040299},
+				        {"returning", "Electronics", "Cameras", 0.031343},
+				        {"returning", "Home & Living", "Furniture", 0.063806},
+				        {"returning", "Home & Living", "Kitchen", 0.059552},
+				        {"returning", "Home & Living", "Lighting", 0.038284},
+				        {"returning", "Home & Living", "Decor", 0.051045},
+				        {"returning", "Fashion", "Outerwear", 0.053731},
+				        {"returning", "Fashion", "Footwear", 0.050373},
+				        {"returning", "Fashion", "Accessories", 0.03694},
+				        {"returning", "Fashion", "Basics", 0.026866},
+				        {"returning", "Sports & Outdoors", "Fitness", 0.042537},
+				        {"returning", "Sports & Outdoors", "Camping", 0.029104},
+				        {"returning", "Sports & Outdoors", "Cycling", 0.022388},
+				        {"returning", "Sports & Outdoors", "Running", 0.01791},
+				        {"returning", "Beauty & Care", "Skincare", 0.051306},
+				        {"returning", "Beauty & Care", "Fragrance", 0.034981},
+				        {"returning", "Beauty & Care", "Haircare", 0.030317},
+				        {"returning", "Books & Media", "Non-fiction", 0.029851},
+				        {"returning", "Books & Media", "Fiction", 0.026866},
+				        {"returning", "Books & Media", "Audio", 0.01791},
+				        {"returning", "Toys & Games", "Board Games", 0.022388},
+				        {"returning", "Toys & Games", "STEM Kits", 0.01903},
+				        {"returning", "Toys & Games", "Puzzles", 0.014552},
+				        {"returning", "Gourmet & Grocery", "Coffee & Tea", 0.020373},
+				        {"returning", "Gourmet & Grocery", "Pantry", 0.016007},
+				        {"window", "Electronics", "Headphones", 0.068905},
+				        {"window", "Electronics", "Smart Home", 0.058304},
+				        {"window", "Electronics", "Laptops", 0.053004},
+				        {"window", "Electronics", "Wearables", 0.047703},
+				        {"window", "Electronics", "Cameras", 0.037102},
+				        {"window", "Home & Living", "Furniture", 0.050353},
+				        {"window", "Home & Living", "Kitchen", 0.046996},
+				        {"window", "Home & Living", "Lighting", 0.030212},
+				        {"window", "Home & Living", "Decor", 0.040283},
+				        {"window", "Fashion", "Outerwear", 0.071237},
+				        {"window", "Fashion", "Footwear", 0.066784},
+				        {"window", "Fashion", "Accessories", 0.048975},
+				        {"window", "Fashion", "Basics", 0.035618},
+				        {"window", "Sports & Outdoors", "Fitness", 0.040283},
+				        {"window", "Sports & Outdoors", "Camping", 0.027562},
+				        {"window", "Sports & Outdoors", "Cycling", 0.021201},
+				        {"window", "Sports & Outdoors", "Running", 0.016961},
+				        {"window", "Beauty & Care", "Skincare", 0.038869},
+				        {"window", "Beauty & Care", "Fragrance", 0.026502},
+				        {"window", "Beauty & Care", "Haircare", 0.022968},
+				        {"window", "Books & Media", "Non-fiction", 0.028269},
+				        {"window", "Books & Media", "Fiction", 0.025442},
+				        {"window", "Books & Media", "Audio", 0.016961},
+				        {"window", "Toys & Games", "Board Games", 0.021201},
+				        {"window", "Toys & Games", "STEM Kits", 0.018021},
+				        {"window", "Toys & Games", "Puzzles", 0.013781},
+				        {"window", "Gourmet & Grocery", "Coffee & Tea", 0.014841},
+				        {"window", "Gourmet & Grocery", "Pantry", 0.011661},
+				        {"intent", "Electronics", "Headphones", 0.074972},
+				        {"intent", "Electronics", "Smart Home", 0.063438},
+				        {"intent", "Electronics", "Laptops", 0.057671},
+				        {"intent", "Electronics", "Wearables", 0.051904},
+				        {"intent", "Electronics", "Cameras", 0.04037},
+				        {"intent", "Home & Living", "Furniture", 0.05268},
+				        {"intent", "Home & Living", "Kitchen", 0.049168},
+				        {"intent", "Home & Living", "Lighting", 0.031608},
+				        {"intent", "Home & Living", "Decor", 0.042144},
+				        {"intent", "Fashion", "Outerwear", 0.053235},
+				        {"intent", "Fashion", "Footwear", 0.049908},
+				        {"intent", "Fashion", "Accessories", 0.036599},
+				        {"intent", "Fashion", "Basics", 0.026617},
+				        {"intent", "Sports & Outdoors", "Fitness", 0.042144},
+				        {"intent", "Sports & Outdoors", "Camping", 0.028835},
+				        {"intent", "Sports & Outdoors", "Cycling", 0.022181},
+				        {"intent", "Sports & Outdoors", "Running", 0.017745},
+				        {"intent", "Beauty & Care", "Skincare", 0.044732},
+				        {"intent", "Beauty & Care", "Fragrance", 0.030499},
+				        {"intent", "Beauty & Care", "Haircare", 0.026433},
+				        {"intent", "Books & Media", "Non-fiction", 0.029575},
+				        {"intent", "Books & Media", "Fiction", 0.026617},
+				        {"intent", "Books & Media", "Audio", 0.017745},
+				        {"intent", "Toys & Games", "Board Games", 0.022181},
+				        {"intent", "Toys & Games", "STEM Kits", 0.018854},
+				        {"intent", "Toys & Games", "Puzzles", 0.014418},
+				        {"intent", "Gourmet & Grocery", "Coffee & Tea", 0.015527},
+				        {"intent", "Gourmet & Grocery", "Pantry", 0.0122},
+				        {"atrisk", "Electronics", "Headphones", 0.060524},
+				        {"atrisk", "Electronics", "Smart Home", 0.051212},
+				        {"atrisk", "Electronics", "Laptops", 0.046557},
+				        {"atrisk", "Electronics", "Wearables", 0.041901},
+				        {"atrisk", "Electronics", "Cameras", 0.03259},
+				        {"atrisk", "Home & Living", "Furniture", 0.060815},
+				        {"atrisk", "Home & Living", "Kitchen", 0.05676},
+				        {"atrisk", "Home & Living", "Lighting", 0.036489},
+				        {"atrisk", "Home & Living", "Decor", 0.048652},
+				        {"atrisk", "Fashion", "Outerwear", 0.055868},
+				        {"atrisk", "Fashion", "Footwear", 0.052376},
+				        {"atrisk", "Fashion", "Accessories", 0.038409},
+				        {"atrisk", "Fashion", "Basics", 0.027934},
+				        {"atrisk", "Sports & Outdoors", "Fitness", 0.044229},
+				        {"atrisk", "Sports & Outdoors", "Camping", 0.030262},
+				        {"atrisk", "Sports & Outdoors", "Cycling", 0.023278},
+				        {"atrisk", "Sports & Outdoors", "Running", 0.018623},
+				        {"atrisk", "Beauty & Care", "Skincare", 0.042677},
+				        {"atrisk", "Beauty & Care", "Fragrance", 0.029098},
+				        {"atrisk", "Beauty & Care", "Haircare", 0.025218},
+				        {"atrisk", "Books & Media", "Non-fiction", 0.031038},
+				        {"atrisk", "Books & Media", "Fiction", 0.027934},
+				        {"atrisk", "Books & Media", "Audio", 0.018623},
+				        {"atrisk", "Toys & Games", "Board Games", 0.027934},
+				        {"atrisk", "Toys & Games", "STEM Kits", 0.023744},
+				        {"atrisk", "Toys & Games", "Puzzles", 0.018157},
+				        {"atrisk", "Gourmet & Grocery", "Coffee & Tea", 0.016295},
+				        {"atrisk", "Gourmet & Grocery", "Pantry", 0.012803},
+				        {"inactive", "Electronics", "Headphones", 0.0624},
+				        {"inactive", "Electronics", "Smart Home", 0.0528},
+				        {"inactive", "Electronics", "Laptops", 0.048},
+				        {"inactive", "Electronics", "Wearables", 0.0432},
+				        {"inactive", "Electronics", "Cameras", 0.0336},
+				        {"inactive", "Home & Living", "Furniture", 0.057},
+				        {"inactive", "Home & Living", "Kitchen", 0.0532},
+				        {"inactive", "Home & Living", "Lighting", 0.0342},
+				        {"inactive", "Home & Living", "Decor", 0.0456},
+				        {"inactive", "Fashion", "Outerwear", 0.0576},
+				        {"inactive", "Fashion", "Footwear", 0.054},
+				        {"inactive", "Fashion", "Accessories", 0.0396},
+				        {"inactive", "Fashion", "Basics", 0.0288},
+				        {"inactive", "Sports & Outdoors", "Fitness", 0.0456},
+				        {"inactive", "Sports & Outdoors", "Camping", 0.0312},
+				        {"inactive", "Sports & Outdoors", "Cycling", 0.024},
+				        {"inactive", "Sports & Outdoors", "Running", 0.0192},
+				        {"inactive", "Beauty & Care", "Skincare", 0.044},
+				        {"inactive", "Beauty & Care", "Fragrance", 0.03},
+				        {"inactive", "Beauty & Care", "Haircare", 0.026},
+				        {"inactive", "Books & Media", "Non-fiction", 0.032},
+				        {"inactive", "Books & Media", "Fiction", 0.0288},
+				        {"inactive", "Books & Media", "Audio", 0.0192},
+				        {"inactive", "Toys & Games", "Board Games", 0.024},
+				        {"inactive", "Toys & Games", "STEM Kits", 0.0204},
+				        {"inactive", "Toys & Games", "Puzzles", 0.0156},
+				        {"inactive", "Gourmet & Grocery", "Coffee & Tea", 0.0168},
+				        {"inactive", "Gourmet & Grocery", "Pantry", 0.0132}
+				    })
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

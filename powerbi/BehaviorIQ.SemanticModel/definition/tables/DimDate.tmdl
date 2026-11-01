@@ -1,0 +1,127 @@
+/// Date dimension (marked as date table). Built with DAX CALENDAR over the fact date range.
+table DimDate
+	dataCategory: Time
+	lineageTag: a33ad8b4-008d-eff3-2deb-97a6f47fcacc
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: yyyy-mm-dd
+		lineageTag: 76b3be32-0e3e-993c-806f-fe518beb4f2d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: ff19534a-cb00-5c95-a13d-459165074b9a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 97188b96-17dd-8b22-783d-4096588523d3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 47589994-b799-4e63-3b74-d3dd4fea6c56
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: 264a11d9-a6d4-e21c-8ad5-2daafc344ad3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year Month]
+		sortByColumn: 'Year Month Key'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month Key'
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 44804471-d925-baab-1565-dd7809f53e7b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year Month Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Start'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: bbe89084-66a4-051f-ebe2-858b842acfc2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Week Start]
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weekday Number'
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 47a715e1-6995-e258-69a7-b7eb3152b7b6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		dataType: string
+		lineageTag: 5dc9f6fd-63f3-5acc-abc2-9445bec1c136
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+		sortByColumn: 'Weekday Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Weekend'
+		dataType: boolean
+		lineageTag: bf861fa1-9254-8b5d-c4d7-df7a6ea991fb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Is Weekend]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(
+				    CALENDAR(MIN(FactBehavior[date]), MAX(FactBehavior[date])),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month", FORMAT([Date], "mmm"),
+				    "Year Month", FORMAT([Date], "yyyy-mm"),
+				    "Year Month Key", YEAR([Date]) * 100 + MONTH([Date]),
+				    "Week Start", [Date] - WEEKDAY([Date], 2) + 1,
+				    "Weekday Number", WEEKDAY([Date], 2),
+				    "Weekday", FORMAT([Date], "ddd"),
+				    "Is Weekend", WEEKDAY([Date], 2) >= 6
+				)

@@ -1,0 +1,7 @@
+/// Folder that contains the BehaviorIQ CSV files. Must end with a backslash. Change it in Transform data → Manage parameters.
+expression DataFolder = "C:\BehaviorIQ\data\" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: ddd22f21-00a1-ac26-f1d6-423344fad923
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text

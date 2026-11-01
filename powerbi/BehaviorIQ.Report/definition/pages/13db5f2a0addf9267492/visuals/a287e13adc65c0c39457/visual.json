@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "a287e13adc65c0c39457",
+  "position": {
+    "x": 16,
+    "y": 754,
+    "z": 22000,
+    "height": 200,
+    "width": 1248,
+    "tabOrder": 22000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimSegment"
+                    }
+                  },
+                  "Property": "segment_name"
+                }
+              },
+              "queryRef": "DimSegment.segment_name",
+              "nativeQueryRef": "segment_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Scenario Purchase Intent"
+                }
+              },
+              "queryRef": "_Measures.Scenario Purchase Intent",
+              "nativeQueryRef": "Scenario Purchase Intent"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Scenario Churn Risk"
+                }
+              },
+              "queryRef": "_Measures.Scenario Churn Risk",
+              "nativeQueryRef": "Scenario Churn Risk"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Scenario Repeat Visit Likelihood"
+                }
+              },
+              "queryRef": "_Measures.Scenario Repeat Visit Likelihood",
+              "nativeQueryRef": "Scenario Repeat Visit Likelihood"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Scenario Conversion Probability"
+                }
+              },
+              "queryRef": "_Measures.Scenario Conversion Probability",
+              "nativeQueryRef": "Scenario Conversion Probability"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segment-level simulated predictions'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

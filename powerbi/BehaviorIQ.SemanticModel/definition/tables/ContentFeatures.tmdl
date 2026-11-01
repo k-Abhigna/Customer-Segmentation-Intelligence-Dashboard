@@ -1,0 +1,69 @@
+/// Content consumption and feature usage (full period).
+table ContentFeatures
+	lineageTag: b7d564fc-54c6-6085-4b15-b4863498df65
+
+	column kind
+		dataType: string
+		lineageTag: b14f0cca-905a-baca-b249-90f3c6d6d6dc
+		summarizeBy: none
+		sourceColumn: kind
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 06883d3b-d4d3-b951-1e09-bf187081b22c
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column share_or_usage
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 9c3c312a-4e84-e9cc-c2de-9e7e449289f7
+		summarizeBy: none
+		sourceColumn: share_or_usage
+
+		annotation SummarizationSetBy = Automatic
+
+	column completion_rate
+		dataType: double
+		formatString: 0%
+		lineageTag: e80a80d7-e544-be76-0bf7-bdf2af7a26a2
+		summarizeBy: none
+		sourceColumn: completion_rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_seconds
+		dataType: double
+		formatString: 0
+		lineageTag: d85ebe66-2fc1-3f54-b817-220066d5fb8e
+		summarizeBy: none
+		sourceColumn: avg_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column conversion_lift
+		dataType: double
+		formatString: 0.00
+		lineageTag: a9e7478b-b3b4-8146-5bb9-3ee0efa2e368
+		summarizeBy: none
+		sourceColumn: conversion_lift
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ContentFeatures = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_content_features.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"kind", type text}, {"name", type text}, {"share_or_usage", type number}, {"completion_rate", type number}, {"avg_seconds", type number}, {"conversion_lift", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

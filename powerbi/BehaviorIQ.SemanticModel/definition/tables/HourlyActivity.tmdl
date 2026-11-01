@@ -1,0 +1,55 @@
+/// Average sessions per weekday-hour (full period).
+table HourlyActivity
+	lineageTag: 2451f977-26e4-71f1-aa49-1a43d188966c
+
+	column weekday
+		dataType: string
+		lineageTag: 99c293e7-bc63-72fa-4369-344493cb6826
+		summarizeBy: none
+		sourceColumn: weekday
+		sortByColumn: weekday_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column hour
+		dataType: int64
+		formatString: 0
+		lineageTag: fd079d35-0c23-c372-c57d-e80993ffa982
+		summarizeBy: none
+		sourceColumn: hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_sessions
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4801dce6-a65a-f0a4-0bfb-6c7b6451d53b
+		summarizeBy: sum
+		sourceColumn: avg_sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday_number
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 2fc75fd2-5f1c-9bc3-2830-14079cae6ce5
+		summarizeBy: none
+		sourceColumn: weekday_number
+
+		annotation SummarizationSetBy = Automatic
+
+	partition HourlyActivity = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "agg_hourly_activity.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"weekday", type text}, {"hour", Int64.Type}, {"avg_sessions", Int64.Type}}, "en-US"),
+				    WeekdayNo = Table.AddColumn(Typed, "weekday_number", each List.PositionOf({"Mon","Tue","Wed","Thu","Fri","Sat","Sun"}, [weekday]) + 1, Int64.Type)
+				in
+				    WeekdayNo
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

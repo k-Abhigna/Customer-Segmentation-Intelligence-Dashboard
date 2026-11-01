@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "03d96c9b0df552fb8030",
+  "position": {
+    "x": 16,
+    "y": 882,
+    "z": 11000,
+    "height": 290,
+    "width": 620,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "page_name"
+                }
+              },
+              "queryRef": "PageMetrics.page_name",
+              "nativeQueryRef": "page_name"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "exit_rate"
+                }
+              },
+              "queryRef": "PageMetrics.exit_rate",
+              "nativeQueryRef": "exit_rate"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Where visitors abandon sessions (exit rate, full period)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

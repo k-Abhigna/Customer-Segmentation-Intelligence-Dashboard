@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "3b72f7368447adff8a22",
+  "position": {
+    "x": 16,
+    "y": 688,
+    "z": 13000,
+    "height": 300,
+    "width": 620,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JourneyStages"
+                    }
+                  },
+                  "Property": "Stage"
+                }
+              },
+              "queryRef": "JourneyStages.Stage",
+              "nativeQueryRef": "Stage"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDevice"
+                    }
+                  },
+                  "Property": "device_name"
+                }
+              },
+              "queryRef": "DimDevice.device_name",
+              "nativeQueryRef": "device_name"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stage Conversion from Previous"
+                }
+              },
+              "queryRef": "_Measures.Stage Conversion from Previous",
+              "nativeQueryRef": "Stage Conversion from Previous"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Stage conversion by device'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

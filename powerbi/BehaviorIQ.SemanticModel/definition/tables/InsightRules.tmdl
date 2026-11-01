@@ -1,0 +1,60 @@
+/// Predefined analytical rules evaluated by the Insight measures. No AI model is called.
+table InsightRules
+	lineageTag: b46ff53c-eeed-8e4e-e1f3-8ba2536d8bc4
+
+	column 'Rule ID'
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: ec7cad3c-3a24-5575-be8e-9297a887337e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Rule ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 30f6af41-6e02-6f59-28b2-e8ca395614d0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Insight
+		dataType: string
+		lineageTag: 35afe2e4-aba5-df81-151a-c67eeee323f4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Insight]
+		sortByColumn: 'Rule ID'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rule
+		dataType: string
+		lineageTag: f1d9e652-3649-42b2-5076-f855ccf43e8c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Rule]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition InsightRules = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Rule ID", INTEGER, "Type", STRING, "Insight", STRING, "Rule", STRING,
+				    {
+				        {1, "Observation", "Returning visitors show higher engagement than first-time visitors", "engagement(returning) > engagement(first-time)"},
+				        {2, "Risk", "Mobile users have a higher checkout abandonment rate", "cart_abandonment(mobile) > cart_abandonment(desktop)"},
+				        {3, "Opportunity", "Product comparison pages generate strong purchase intent", "P(cart | compare) > P(cart | product)"},
+				        {4, "Observation", "Organic search visitors spend more time exploring content", "avg_duration(organic) > avg_duration(all)"},
+				        {5, "Opportunity", "Highest-converting traffic source", "argmax(conversion_rate by channel)"},
+				        {6, "Opportunity", "Window Shoppers browse deeply but rarely add to cart", "segment = window AND cart_rate < site average"},
+				        {7, "Trend", "Regional conversion leader and laggard", "max / min(conversion_rate by region)"},
+				        {8, "Trend", "Conversion rate vs the previous period", "Δ conversion_rate (current vs previous period)"},
+				        {9, "Risk", "At-Risk Customers trend", "visitor-days(at-risk) vs previous period"}
+				    }
+				)

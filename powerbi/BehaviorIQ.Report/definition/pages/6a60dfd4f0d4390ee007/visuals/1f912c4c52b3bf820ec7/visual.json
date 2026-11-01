@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "1f912c4c52b3bf820ec7",
+  "position": {
+    "x": 940,
+    "y": 424,
+    "z": 25000,
+    "height": 300,
+    "width": 324,
+    "tabOrder": 25000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDevice"
+                    }
+                  },
+                  "Property": "device_name"
+                }
+              },
+              "queryRef": "DimDevice.device_name",
+              "nativeQueryRef": "device_name"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Sessions"
+                }
+              },
+              "queryRef": "_Measures.Sessions",
+              "nativeQueryRef": "Sessions"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Device distribution (sessions)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

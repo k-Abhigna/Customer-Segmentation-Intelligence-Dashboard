@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "17904998e59571fb9aa2",
+  "position": {
+    "x": 16,
+    "y": 588,
+    "z": 13000,
+    "height": 300,
+    "width": 620,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "hundredPercentStackedBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimSegment"
+                    }
+                  },
+                  "Property": "segment_name"
+                }
+              },
+              "queryRef": "DimSegment.segment_name",
+              "nativeQueryRef": "segment_name"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "New Visitors"
+                }
+              },
+              "queryRef": "_Measures.New Visitors",
+              "nativeQueryRef": "New Visitors",
+              "displayName": "New"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Returning Visitors"
+                }
+              },
+              "queryRef": "_Measures.Returning Visitors",
+              "nativeQueryRef": "Returning Visitors",
+              "displayName": "Returning"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'New vs returning by segment'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

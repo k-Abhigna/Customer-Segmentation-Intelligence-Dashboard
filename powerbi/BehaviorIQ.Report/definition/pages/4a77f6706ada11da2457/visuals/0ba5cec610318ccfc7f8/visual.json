@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "0ba5cec610318ccfc7f8",
+  "position": {
+    "x": 648,
+    "y": 560,
+    "z": 10000,
+    "height": 300,
+    "width": 616,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "HourlyActivity"
+                    }
+                  },
+                  "Property": "hour"
+                }
+              },
+              "queryRef": "HourlyActivity.hour",
+              "nativeQueryRef": "hour"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "HourlyActivity"
+                    }
+                  },
+                  "Property": "avg_sessions"
+                }
+              },
+              "queryRef": "HourlyActivity.avg_sessions",
+              "nativeQueryRef": "avg_sessions"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Preferred browsing times — avg sessions by hour'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

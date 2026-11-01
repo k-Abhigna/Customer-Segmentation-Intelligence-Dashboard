@@ -1,0 +1,264 @@
+/// Synthetic, aggregated behavioral facts: one row per date × device × region × segment. No PII.
+table FactBehavior
+	lineageTag: c231d27b-360b-54b9-fb57-cb280cf74058
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		isHidden
+		lineageTag: 62b560b8-1a0e-cf20-eb02-851675f96bea
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column device_id
+		dataType: string
+		isHidden
+		lineageTag: a2c9d472-5f6c-84ab-1802-4bf84c3eb978
+		summarizeBy: none
+		sourceColumn: device_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_id
+		dataType: string
+		isHidden
+		lineageTag: 415bf49f-2e21-9554-5fe8-374333e56452
+		summarizeBy: none
+		sourceColumn: region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_id
+		dataType: string
+		isHidden
+		lineageTag: 33ac9693-4d0d-443a-3c87-e13ebd15c367
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column visitors
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 1080cefa-529c-846e-3377-cd974300b97b
+		summarizeBy: sum
+		sourceColumn: visitors
+
+		annotation SummarizationSetBy = Automatic
+
+	column new_visitors
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 110cc274-2f16-36cc-178c-cd873084489a
+		summarizeBy: sum
+		sourceColumn: new_visitors
+
+		annotation SummarizationSetBy = Automatic
+
+	column returning_visitors
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 0ca5bbfe-7880-b4ed-8265-9fd13d4afa8b
+		summarizeBy: sum
+		sourceColumn: returning_visitors
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessions
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 5184bbaf-b8cc-ae49-eab9-a02b9caad69c
+		summarizeBy: sum
+		sourceColumn: sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column engaged_sessions
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 2aa02b17-0222-c4ee-ba0a-aab166ce0ed2
+		summarizeBy: sum
+		sourceColumn: engaged_sessions
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_views
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 77088dec-d2db-49d5-0b21-fec3d890a88d
+		summarizeBy: sum
+		sourceColumn: page_views
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_session_seconds
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: b3402917-fa46-e3f6-6ba4-82abaec5d43a
+		summarizeBy: sum
+		sourceColumn: total_session_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column bounces
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 047be004-f2c6-56ab-2efe-559434c4d353
+		summarizeBy: sum
+		sourceColumn: bounces
+
+		annotation SummarizationSetBy = Automatic
+
+	column clicks
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: c2dd6743-cca0-590a-4d50-3c8d72bea178
+		summarizeBy: sum
+		sourceColumn: clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column scroll_events
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: b6d5c57a-f57b-a736-facf-edc5ce5da6f2
+		summarizeBy: sum
+		sourceColumn: scroll_events
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_views
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 275bad10-da7e-00ef-5073-5bdd6b81de9e
+		summarizeBy: sum
+		sourceColumn: product_views
+
+		annotation SummarizationSetBy = Automatic
+
+	column searches
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: dcad5de1-399c-cf51-8730-877bf9e9ef45
+		summarizeBy: sum
+		sourceColumn: searches
+
+		annotation SummarizationSetBy = Automatic
+
+	column stage_landing
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 6dd9cc01-423e-5249-272b-4dc2e0ed2b51
+		summarizeBy: sum
+		sourceColumn: stage_landing
+
+		annotation SummarizationSetBy = Automatic
+
+	column stage_exploration
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 85d7c406-2345-a267-24a6-2ae43281facb
+		summarizeBy: sum
+		sourceColumn: stage_exploration
+
+		annotation SummarizationSetBy = Automatic
+
+	column stage_product_interest
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 310c1e59-4a7e-e3d9-8cd2-5f75f7854709
+		summarizeBy: sum
+		sourceColumn: stage_product_interest
+
+		annotation SummarizationSetBy = Automatic
+
+	column add_to_cart
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: fb33d462-ba24-d53d-076b-8e82346782f9
+		summarizeBy: sum
+		sourceColumn: add_to_cart
+
+		annotation SummarizationSetBy = Automatic
+
+	column checkouts
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: d0ba6f4a-684f-e774-3dbc-66d7fdcd116c
+		summarizeBy: sum
+		sourceColumn: checkouts
+
+		annotation SummarizationSetBy = Automatic
+
+	column conversions
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 7956cc6d-dae0-0976-15e1-a633e4b6625c
+		summarizeBy: sum
+		sourceColumn: conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue
+		dataType: int64
+		formatString: #,0
+		isHidden
+		lineageTag: 63fdd977-57e7-0a54-d276-70b357316454
+		summarizeBy: sum
+		sourceColumn: revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column scroll_depth_sum
+		dataType: double
+		isHidden
+		lineageTag: f4cf0879-bc56-a0a7-5890-2d779ff1b320
+		summarizeBy: sum
+		sourceColumn: scroll_depth_sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_synthetic
+		dataType: boolean
+		isHidden
+		lineageTag: e474598a-0f04-1046-68e7-46eeb0a2d9df
+		summarizeBy: none
+		sourceColumn: is_synthetic
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactBehavior = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_daily_behavior.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"date", type date}, {"device_id", type text}, {"region_id", type text}, {"segment_id", type text}, {"visitors", Int64.Type}, {"new_visitors", Int64.Type}, {"returning_visitors", Int64.Type}, {"sessions", Int64.Type}, {"engaged_sessions", Int64.Type}, {"page_views", Int64.Type}, {"total_session_seconds", Int64.Type}, {"bounces", Int64.Type}, {"clicks", Int64.Type}, {"scroll_events", Int64.Type}, {"product_views", Int64.Type}, {"searches", Int64.Type}, {"stage_landing", Int64.Type}, {"stage_exploration", Int64.Type}, {"stage_product_interest", Int64.Type}, {"add_to_cart", Int64.Type}, {"checkouts", Int64.Type}, {"conversions", Int64.Type}, {"revenue", Int64.Type}, {"scroll_depth_sum", type number}, {"is_synthetic", type logical}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,18 @@
+/// What-if parameter (SIMULATED scenario lever).
+table ParamDiscount
+	lineageTag: bbc3829e-9f3d-7b62-ac44-23a8dd05f668
+
+	column 'Discount %'
+		dataType: int64
+		formatString: 0
+		lineageTag: 708bd7e8-9590-3d2b-2a08-73a3d05b1ff1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Discount %]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ParamDiscount = calculated
+		mode: import
+		source =
+				SELECTCOLUMNS(GENERATESERIES(0, 30, 5), "Discount %", [Value])

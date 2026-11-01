@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "d72afaacdc84a15d492e",
+  "position": {
+    "x": 16,
+    "y": 168,
+    "z": 7000,
+    "height": 380,
+    "width": 820,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "treemap",
+    "query": {
+      "queryState": {
+        "Group": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CategoryMix"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "CategoryMix.category",
+              "nativeQueryRef": "category"
+            }
+          ]
+        },
+        "Details": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CategoryMix"
+                    }
+                  },
+                  "Property": "subcategory"
+                }
+              },
+              "queryRef": "CategoryMix.subcategory",
+              "nativeQueryRef": "subcategory"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Product Views (modeled)"
+                }
+              },
+              "queryRef": "_Measures.Product Views (modeled)",
+              "nativeQueryRef": "Product Views (modeled)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Popular product categories (filtered, modeled)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

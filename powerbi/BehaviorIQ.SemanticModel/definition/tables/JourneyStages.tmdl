@@ -1,0 +1,40 @@
+/// Disconnected table that drives the journey funnel (SWITCH pattern).
+table JourneyStages
+	lineageTag: b49528c4-d9f3-ddeb-6571-7b5b47840e68
+
+	column Stage
+		dataType: string
+		lineageTag: 29ec162b-d3ae-6562-f4dd-86196a9ebc54
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Stage]
+		sortByColumn: 'Stage Order'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stage Order'
+		dataType: int64
+		formatString: 0
+		isHidden
+		lineageTag: 52db6ed6-7e25-863b-6f79-3d8aa64d4c93
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Stage Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition JourneyStages = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Stage", STRING, "Stage Order", INTEGER,
+				    {
+				        {"Discovery", 1},
+				        {"Landing Page", 2},
+				        {"Content Exploration", 3},
+				        {"Product Interest", 4},
+				        {"Add to Cart", 5},
+				        {"Checkout", 6},
+				        {"Conversion", 7}
+				    }
+				)

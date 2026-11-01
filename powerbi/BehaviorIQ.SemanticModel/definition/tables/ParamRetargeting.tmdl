@@ -1,0 +1,17 @@
+/// What-if parameter (SIMULATED scenario lever).
+table ParamRetargeting
+	lineageTag: 89275248-8ad4-912b-5d94-b34feaa51466
+
+	column 'Consented Retargeting'
+		dataType: string
+		lineageTag: fd1e074b-64f6-4c4a-46e8-c10a75f4f60e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Consented Retargeting]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ParamRetargeting = calculated
+		mode: import
+		source =
+				DATATABLE("Consented Retargeting", STRING, {{"No"}, {"Yes"}})

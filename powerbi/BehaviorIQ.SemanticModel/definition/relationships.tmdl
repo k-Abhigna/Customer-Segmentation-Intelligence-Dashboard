@@ -1,0 +1,39 @@
+relationship 6e52bc99-ed5f-d915-522c-9dbe05ef4770
+	fromColumn: FactBehavior.date
+	toColumn: DimDate.Date
+
+relationship 851eada5-6515-4203-9781-8139105b0923
+	fromColumn: FactBehavior.device_id
+	toColumn: DimDevice.device_id
+
+relationship 9d6e03af-3f99-6080-8c8e-e6caccba52a5
+	fromColumn: FactBehavior.region_id
+	toColumn: DimRegion.region_id
+
+relationship 699597fc-cbfa-2678-a13a-fee62ab499bd
+	fromColumn: FactBehavior.segment_id
+	toColumn: DimSegment.segment_id
+
+relationship 52fc2c7d-8cba-ea30-dd85-8faeb6c4cf14
+	fromColumn: ChannelMix.segment_id
+	toColumn: DimSegment.segment_id
+
+relationship 54019d05-0cdb-117e-6e42-d6065fa2ae77
+	fromColumn: PageMix.segment_id
+	toColumn: DimSegment.segment_id
+
+relationship df7c51c2-75f8-af04-1325-6f6e2c4d2fe3
+	fromColumn: PageMix.page_id
+	toColumn: DimPage.page_id
+
+relationship b4b42ff5-c1a8-0e56-2dd7-c85593b9ac7a
+	fromColumn: CategoryMix.segment_id
+	toColumn: DimSegment.segment_id
+
+relationship c4065407-d407-bad5-6efb-ba0592c666a2
+	fromColumn: Transitions.from_page_id
+	toColumn: DimPage.page_id
+
+relationship d430ce86-9d98-169a-c489-30c2b5b45f56
+	fromColumn: PageMetrics.page_id
+	toColumn: DimPage.page_id

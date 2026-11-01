@@ -1,0 +1,129 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "bb5372b16e02f9b20998",
+  "position": {
+    "x": 528,
+    "y": 276,
+    "z": 12000,
+    "height": 340,
+    "width": 736,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "page_name"
+                }
+              },
+              "queryRef": "PageMetrics.page_name",
+              "nativeQueryRef": "page_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "avg_time_on_page_seconds"
+                }
+              },
+              "queryRef": "PageMetrics.avg_time_on_page_seconds",
+              "nativeQueryRef": "avg_time_on_page_seconds"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "avg_scroll_depth"
+                }
+              },
+              "queryRef": "PageMetrics.avg_scroll_depth",
+              "nativeQueryRef": "avg_scroll_depth"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "clicks_per_view"
+                }
+              },
+              "queryRef": "PageMetrics.clicks_per_view",
+              "nativeQueryRef": "clicks_per_view"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "exit_rate"
+                }
+              },
+              "queryRef": "PageMetrics.exit_rate",
+              "nativeQueryRef": "exit_rate"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "exits"
+                }
+              },
+              "queryRef": "PageMetrics.exits",
+              "nativeQueryRef": "exits"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Page interaction breakdown (full period) — click headers to sort'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

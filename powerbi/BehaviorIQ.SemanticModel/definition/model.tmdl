@@ -1,0 +1,39 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DataFolder", "FactBehavior", "DimDevice", "DimRegion", "DimSegment", "DimPage", "Transitions", "PageMetrics", "HourlyActivity", "SearchKeywords", "ContentFeatures", "ChannelMix", "PageMix", "CategoryMix"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table FactBehavior
+ref table DimDevice
+ref table DimRegion
+ref table DimSegment
+ref table DimPage
+ref table Transitions
+ref table PageMetrics
+ref table HourlyActivity
+ref table SearchKeywords
+ref table ContentFeatures
+ref table ChannelMix
+ref table PageMix
+ref table CategoryMix
+ref table DimDate
+ref table JourneyStages
+ref table KPISelector
+ref table ParamBudget
+ref table ParamPersonalization
+ref table ParamDiscount
+ref table ParamEmail
+ref table ParamRetargeting
+ref table InsightRules
+ref table _Measures
+

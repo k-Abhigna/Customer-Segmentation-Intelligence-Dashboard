@@ -1,0 +1,117 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "4ba86cca1b00f82bc06c",
+  "position": {
+    "x": 16,
+    "y": 510,
+    "z": 10000,
+    "height": 360,
+    "width": 1248,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimPage"
+                    }
+                  },
+                  "Property": "page_name"
+                }
+              },
+              "queryRef": "DimPage.page_name",
+              "nativeQueryRef": "page_name"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Transitions"
+                    }
+                  },
+                  "Property": "to_page_name"
+                }
+              },
+              "queryRef": "Transitions.to_page_name",
+              "nativeQueryRef": "to_page_name"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Est. Transitions"
+                }
+              },
+              "queryRef": "_Measures.Est. Transitions",
+              "nativeQueryRef": "Est. Transitions"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Navigation flow matrix — from page (rows) → to page (columns). For a Sankey: add the AppSource \"Sankey Chart\" visual with Source = page_name, Destination = to_page_name, Weight = Est. Transitions'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

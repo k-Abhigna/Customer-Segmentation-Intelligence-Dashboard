@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "4a9e76f69370ba25e11a",
+  "position": {
+    "x": 16,
+    "y": 300,
+    "z": 13000,
+    "height": 230,
+    "width": 302,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "gauge",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Scenario Purchase Intent"
+                }
+              },
+              "queryRef": "_Measures.Scenario Purchase Intent",
+              "nativeQueryRef": "Scenario Purchase Intent"
+            }
+          ]
+        },
+        "MaxValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Gauge Max 100%"
+                }
+              },
+              "queryRef": "_Measures.Gauge Max 100%",
+              "nativeQueryRef": "Gauge Max 100%"
+            }
+          ]
+        },
+        "TargetValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Baseline Purchase Intent"
+                }
+              },
+              "queryRef": "_Measures.Baseline Purchase Intent",
+              "nativeQueryRef": "Baseline Purchase Intent"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Purchase Intent (target line = baseline)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

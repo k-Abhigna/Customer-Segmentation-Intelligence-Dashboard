@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "3b6a5ce6d0ecc3221a7f",
+  "position": {
+    "x": 848,
+    "y": 628,
+    "z": 14000,
+    "height": 300,
+    "width": 416,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "funnel",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JourneyStages"
+                    }
+                  },
+                  "Property": "Stage"
+                }
+              },
+              "queryRef": "JourneyStages.Stage",
+              "nativeQueryRef": "Stage"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stage Sessions"
+                }
+              },
+              "queryRef": "_Measures.Stage Sessions",
+              "nativeQueryRef": "Stage Sessions"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Engagement funnel'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

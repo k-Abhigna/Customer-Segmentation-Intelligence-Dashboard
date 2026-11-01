@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "5039e4e87a6540db42d1",
+  "position": {
+    "x": 648,
+    "y": 588,
+    "z": 14000,
+    "height": 300,
+    "width": 300,
+    "tabOrder": 14000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDevice"
+                    }
+                  },
+                  "Property": "device_name"
+                }
+              },
+              "queryRef": "DimDevice.device_name",
+              "nativeQueryRef": "device_name"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Visitor Days"
+                }
+              },
+              "queryRef": "_Measures.Visitor Days",
+              "nativeQueryRef": "Visitor Days"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Device preference'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

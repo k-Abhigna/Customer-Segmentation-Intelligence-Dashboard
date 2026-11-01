@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "15766111e9e717c706b6",
+  "position": {
+    "x": 644,
+    "y": 300,
+    "z": 15000,
+    "height": 230,
+    "width": 302,
+    "tabOrder": 15000
+  },
+  "visual": {
+    "visualType": "gauge",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Scenario Repeat Visit Likelihood"
+                }
+              },
+              "queryRef": "_Measures.Scenario Repeat Visit Likelihood",
+              "nativeQueryRef": "Scenario Repeat Visit Likelihood"
+            }
+          ]
+        },
+        "MaxValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Gauge Max 100%"
+                }
+              },
+              "queryRef": "_Measures.Gauge Max 100%",
+              "nativeQueryRef": "Gauge Max 100%"
+            }
+          ]
+        },
+        "TargetValue": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Baseline Repeat Visit Likelihood"
+                }
+              },
+              "queryRef": "_Measures.Baseline Repeat Visit Likelihood",
+              "nativeQueryRef": "Baseline Repeat Visit Likelihood"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Repeat Visit Likelihood (target line = baseline)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+role 'Europe Manager'
+	modelPermission: read
+
+	tablePermission DimRegion = [region_id] = "eu"
+

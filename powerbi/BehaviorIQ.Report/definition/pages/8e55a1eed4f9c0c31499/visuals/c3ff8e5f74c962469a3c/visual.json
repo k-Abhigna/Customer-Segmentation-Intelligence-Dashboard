@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "c3ff8e5f74c962469a3c",
+  "position": {
+    "x": 860,
+    "y": 168,
+    "z": 9000,
+    "height": 330,
+    "width": 404,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "page_name"
+                }
+              },
+              "queryRef": "PageMetrics.page_name",
+              "nativeQueryRef": "page_name"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PageMetrics"
+                    }
+                  },
+                  "Property": "entries"
+                }
+              },
+              "queryRef": "PageMetrics.entries",
+              "nativeQueryRef": "entries"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Entry pages (full period)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

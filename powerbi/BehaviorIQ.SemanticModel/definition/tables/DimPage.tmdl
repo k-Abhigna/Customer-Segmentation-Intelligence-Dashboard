@@ -1,0 +1,41 @@
+table DimPage
+	lineageTag: 95d7b5ca-5e1d-fb95-8919-fa5a049c25f8
+
+	column page_id
+		dataType: string
+		isHidden
+		lineageTag: 8ed85748-74da-4a71-f14a-f913febd031b
+		summarizeBy: none
+		sourceColumn: page_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_name
+		dataType: string
+		lineageTag: 8b3922e3-409a-1e0a-09f9-8a7e60842b23
+		summarizeBy: none
+		sourceColumn: page_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column url_pattern
+		dataType: string
+		lineageTag: d0c339fb-0f19-1566-6129-fdda07ed8cf4
+		summarizeBy: none
+		sourceColumn: url_pattern
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPage = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "dim_page.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"page_id", type text}, {"page_name", type text}, {"url_pattern", type text}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table

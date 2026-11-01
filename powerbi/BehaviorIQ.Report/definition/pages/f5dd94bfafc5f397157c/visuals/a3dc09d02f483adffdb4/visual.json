@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "a3dc09d02f483adffdb4",
+  "position": {
+    "x": 648,
+    "y": 276,
+    "z": 12000,
+    "height": 400,
+    "width": 616,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "JourneyStages"
+                    }
+                  },
+                  "Property": "Stage"
+                }
+              },
+              "queryRef": "JourneyStages.Stage",
+              "nativeQueryRef": "Stage"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stage Sessions"
+                }
+              },
+              "queryRef": "_Measures.Stage Sessions",
+              "nativeQueryRef": "Stage Sessions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stage Conversion from Previous"
+                }
+              },
+              "queryRef": "_Measures.Stage Conversion from Previous",
+              "nativeQueryRef": "Stage Conversion from Previous"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stage Drop-off"
+                }
+              },
+              "queryRef": "_Measures.Stage Drop-off",
+              "nativeQueryRef": "Stage Drop-off"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Stage Share of Sessions"
+                }
+              },
+              "queryRef": "_Measures.Stage Share of Sessions",
+              "nativeQueryRef": "Stage Share of Sessions"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Conversion and drop-off between stages'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

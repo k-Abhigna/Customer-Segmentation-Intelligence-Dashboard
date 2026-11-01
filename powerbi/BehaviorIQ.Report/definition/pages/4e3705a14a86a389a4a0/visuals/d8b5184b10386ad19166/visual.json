@@ -1,0 +1,145 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "d8b5184b10386ad19166",
+  "position": {
+    "x": 16,
+    "y": 230,
+    "z": 8000,
+    "height": 480,
+    "width": 1248,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InsightRules"
+                    }
+                  },
+                  "Property": "Type"
+                }
+              },
+              "queryRef": "InsightRules.Type",
+              "nativeQueryRef": "Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InsightRules"
+                    }
+                  },
+                  "Property": "Insight"
+                }
+              },
+              "queryRef": "InsightRules.Insight",
+              "nativeQueryRef": "Insight"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Insight Triggered"
+                }
+              },
+              "queryRef": "_Measures.Insight Triggered",
+              "nativeQueryRef": "Insight Triggered",
+              "displayName": "Triggered?"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Insight Evidence"
+                }
+              },
+              "queryRef": "_Measures.Insight Evidence",
+              "nativeQueryRef": "Insight Evidence",
+              "displayName": "Evidence (current filters)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "InsightRules"
+                    }
+                  },
+                  "Property": "Rule"
+                }
+              },
+              "queryRef": "InsightRules.Rule",
+              "nativeQueryRef": "Rule"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Rule-based insights — they update with every filter'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

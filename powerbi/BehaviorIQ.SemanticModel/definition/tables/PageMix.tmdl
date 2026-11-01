@@ -1,0 +1,135 @@
+/// Share of page views per page template for each segment (rows per segment sum to 1).
+table PageMix
+	isHidden
+	lineageTag: 6cb7e5f7-662e-8f5e-4342-36c8c1d6c980
+
+	column segment_id
+		dataType: string
+		isHidden
+		lineageTag: 21c5edb6-e0aa-a102-114e-544f018518aa
+		summarizeBy: none
+		sourceColumn: segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_id
+		dataType: string
+		isHidden
+		lineageTag: 29255cdd-31d0-9086-ecaf-398546588efa
+		summarizeBy: none
+		sourceColumn: page_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight
+		dataType: double
+		isHidden
+		lineageTag: d6fe0d72-1119-3452-3227-d04edcd3ab4a
+		summarizeBy: none
+		sourceColumn: weight
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PageMix = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [segment_id = text, page_id = text, weight = number], {
+				        {"engaged", "home", 0.145706},
+				        {"engaged", "category", 0.154813},
+				        {"engaged", "product", 0.209453},
+				        {"engaged", "compare", 0.04781},
+				        {"engaged", "search", 0.101994},
+				        {"engaged", "reviews", 0.036427},
+				        {"engaged", "blog", 0.071032},
+				        {"engaged", "guides", 0.04098},
+				        {"engaged", "deals", 0.045533},
+				        {"engaged", "campaign", 0.031873},
+				        {"engaged", "cart", 0.050997},
+				        {"engaged", "checkout", 0.036062},
+				        {"engaged", "help", 0.02732},
+				        {"first", "home", 0.217899},
+				        {"first", "category", 0.16537},
+				        {"first", "product", 0.194553},
+				        {"first", "compare", 0.017023},
+				        {"first", "search", 0.077821},
+				        {"first", "reviews", 0.038911},
+				        {"first", "blog", 0.075875},
+				        {"first", "guides", 0.052529},
+				        {"first", "deals", 0.048638},
+				        {"first", "campaign", 0.05107},
+				        {"first", "cart", 0.020428},
+				        {"first", "checkout", 0.0107},
+				        {"first", "help", 0.029183},
+				        {"returning", "home", 0.16632},
+				        {"returning", "category", 0.176715},
+				        {"returning", "product", 0.2079},
+				        {"returning", "compare", 0.036383},
+				        {"returning", "search", 0.08316},
+				        {"returning", "reviews", 0.04158},
+				        {"returning", "blog", 0.06237},
+				        {"returning", "guides", 0.046778},
+				        {"returning", "deals", 0.051975},
+				        {"returning", "campaign", 0.036383},
+				        {"returning", "cart", 0.036383},
+				        {"returning", "checkout", 0.022869},
+				        {"returning", "help", 0.031185},
+				        {"window", "home", 0.144522},
+				        {"window", "category", 0.191943},
+				        {"window", "product", 0.252913},
+				        {"window", "compare", 0.056905},
+				        {"window", "search", 0.072261},
+				        {"window", "reviews", 0.04697},
+				        {"window", "blog", 0.054196},
+				        {"window", "guides", 0.048776},
+				        {"window", "deals", 0.054196},
+				        {"window", "campaign", 0.031614},
+				        {"window", "cart", 0.012646},
+				        {"window", "checkout", 0.005962},
+				        {"window", "help", 0.027098},
+				        {"intent", "home", 0.12922},
+				        {"intent", "category", 0.137296},
+				        {"intent", "product", 0.209982},
+				        {"intent", "compare", 0.073494},
+				        {"intent", "search", 0.096915},
+				        {"intent", "reviews", 0.061379},
+				        {"intent", "blog", 0.048457},
+				        {"intent", "guides", 0.036343},
+				        {"intent", "deals", 0.040381},
+				        {"intent", "campaign", 0.028267},
+				        {"intent", "cart", 0.06784},
+				        {"intent", "checkout", 0.046196},
+				        {"intent", "help", 0.024229},
+				        {"atrisk", "home", 0.156863},
+				        {"atrisk", "category", 0.166667},
+				        {"atrisk", "product", 0.196078},
+				        {"atrisk", "compare", 0.034314},
+				        {"atrisk", "search", 0.078431},
+				        {"atrisk", "reviews", 0.039216},
+				        {"atrisk", "blog", 0.058824},
+				        {"atrisk", "guides", 0.044118},
+				        {"atrisk", "deals", 0.088235},
+				        {"atrisk", "campaign", 0.034314},
+				        {"atrisk", "cart", 0.034314},
+				        {"atrisk", "checkout", 0.021569},
+				        {"atrisk", "help", 0.047059},
+				        {"inactive", "home", 0.2978},
+				        {"inactive", "category", 0.143824},
+				        {"inactive", "product", 0.169205},
+				        {"inactive", "compare", 0.029611},
+				        {"inactive", "search", 0.067682},
+				        {"inactive", "reviews", 0.033841},
+				        {"inactive", "blog", 0.050761},
+				        {"inactive", "guides", 0.038071},
+				        {"inactive", "deals", 0.042301},
+				        {"inactive", "campaign", 0.053299},
+				        {"inactive", "cart", 0.029611},
+				        {"inactive", "checkout", 0.018613},
+				        {"inactive", "help", 0.025381}
+				    })
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
